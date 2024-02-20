@@ -1,0 +1,42 @@
+/* 문서전체에 폰트를 적용하는것이 일반적 */
+/* 전체선택자 또는 바디에 적용 (바디에 글을 다 쓰기때문) */
+/* cdm : 글꼴회사에 직접 요청
+    폰트를 다운받아야 사용가능함 */
+
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+
+/* 글꼴 지정 */
+* {
+    font-family: "Nanum Pen Script", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+/* 배민체를 쓰고싶은데 없다면 바탕으로 적용됨
+    보통 예비용으로 2~3개를 세팅 */
+
+/* 폰트사이즈 변경 */
+h1 {
+    /* font-size: medium; 키워드로 조절(안씀) */
+    /* px로 조절 */
+    font-size: 100px;
+
+    /* (부모요소 기준 배율)em으로 조절 */
+    font-size: 2em;
+
+    /* rem으로 조절: 최상위 요소(body) 기준 배율 */
+    font-size: 2rem;
+}
+div {
+    font-size: 40px;
+}
+
+p {
+    /* 폰트 굵기 */
+
+    /* 키워드로 조절 */
+    font-weight: bold;
+    font-weight: lighter;
+
+    /* 숫자를 통해 조절 (100~900, 100단위) */
+    font-weight: 400;
+}

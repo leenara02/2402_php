@@ -1,0 +1,86 @@
+/*글자색바꿈, 글자 꾸밈, 글자정렬 */
+/* 16진수, RGB방식 많이 사용함 */
+.color-name {
+    color: red;
+} /*현업에선 잘 안씀*/
+
+.color-hex {
+    color: #ff0000;
+} /*16진수를 이용한 색명*/
+
+.color-rgb {
+    color: rgb(0, 0, 0);
+} /*빨,노,파 섞는거*/
+
+.color-rgba {
+    color: rgb(0, 0, 0, 0.5);
+} /*네번째 숫자는 투명도 1부터 소수로 내려감.
+    0:투명 1:원색*/
+
+.color-hsla {
+    color: hsl(hue, saturation, lightness);
+} /*잘 안씀*/ /*색상, 채도, 명도*/
+
+
+/* 밑줄, 취소선 */
+/* text-decoration: underline;
+    tect-decoration: line-through; */
+
+/* 글자정렬 */
+#p-center {
+    text-align: center;
+} /*가운데정렬*/
+
+#p-right {
+    text-align: right;
+} /*우측정렬*/
+
+#p {
+    text-align: left;
+} /*좌측정렬*/
+/* 행에 대한 정렬임 */
+
+.div-center {
+    width: 200px;
+    height: 200px;
+    background-color: burlywood;
+}
+.div-center p {
+    text-align: center;
+    line-height: 200px; /*height:행간*/
+} /*부모밑에 자식태그를 찾아감*/
+    /*부모의 height와 자식의 height를
+        동일시하면 구역의 완전 센터로 이동*/
+    /*줄간격 조절을 통해 중앙으로 정렬*/
+
+    /* 대 소문자를 어떻게 조절하냐 */
+
+    /* 영어 첫번째 글자를 대문자로 변환 */
+    .capitalize {
+        text-transform: capitalize;
+    }
+
+    /* 텍스트를 영어 대문자로 변환 */
+    .uppercase {
+        text-transform: uppercase;
+    }
+
+    /* 텍스트를 영어 소문자로 변환 */
+    .lowercase {
+        text-transform: lowercase;
+    }
+
+    /* 자간 설정*/
+    .letter-spacing {
+        letter-spacing: 2rem;
+    }
+
+    /* 단어간 간격 설정 */
+    .word-spacing {
+        word-spacing: 1.5rem;
+    }
+
+    /* 글자에 그림자를 넣는 속성 */
+    .shadow {
+        text-shadow: -5px -5px 10px red;
+    } /*콤마없이 작성*/ /*-를 붙이면 왼,위로 이동*/
