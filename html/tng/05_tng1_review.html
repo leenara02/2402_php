@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>회원가입을 환영합니다</h1>
+    <form action="">
+        <!-- action에 아무것도 안넣으면 나자신한테 이동됨 -->
+        <fieldset>
+            <legend>사용자 정보</legend>
+            <ul>
+                <li>
+                    <label for="input-id">아이디</label>
+                    <input 
+                        type="text" 
+                        name="input-id" 
+                        id="input-id" 
+                        placeholder="4자~10자 사이, 공백없이"
+                        minlength="4" maxlength="10">
+                </li>
+                <li>
+                    <label for="input-email">이메일</label>
+                    <input type="email" name="input-email" id="input-email">
+                </li>
+                <li>
+                    <label for="input-pw">비밀번호</label>
+                    <input 
+                        type="password" 
+                        name="input-pw" 
+                        id="input-pw" 
+                        placeholder="문자와 숫자, 특수기호 포함">
+                </li>
+                <li>
+                    <label for="input-pwchk">비밀번호확인</label>
+                    <input type="password"
+                        name="input-pwchk"
+                        id="input-pwchk">
+                </li>
+                <li>
+                    <label for="root">가입 경로</label>
+                    <select name="root" id="root">
+                        <option value="0">기타</option>
+                        <option value="1">친구의추천</option>
+                        <!-- 글자수(크기)에 따라 드롭다운박스의 크기가 달라짐 -->
+                    </select>
+                </li>
+                <li>
+                    <label for="mamo">메모</label>
+                    <textarea 
+                        name="memo" 
+                        id="memo" 
+                        cols="30" 
+                        rows="10" 
+                        placeholder="남길 말씀이 있다면 여기에"></textarea>
+                        <!-- textarea 여는태그와 닫는태그 사이에 공백이 들어가지않도록 주의
+                                줄바꿈을 해도 공백이 들어가기 때문에 줄바꿈 x -->
+                </li>
+            </ul>
+        </fieldset>
+
+        <fieldset>
+            <legend>이벤트와 새로운 소식</legend>
+            <input type="radio" name="radio" id="radio-mailsend">
+            <label for="radio-mailsend">메일 수신</label>
+            <input type="radio" name="radio" id="radio-mailnotsend">
+            <label for="radio-mailnotsend">메일 수신 안 함</label>
+            <!-- label을 어디에 두느냐에 따라서 체크박스의 위치가 달라짐 -->
+        </fieldset>
+        
+        <button type="submit">가입하기</button>
+        <button type="reset">취소</button>
+    </form>
+</body>
+</html>

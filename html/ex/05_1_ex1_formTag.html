@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- form태그 : 정보를 제출하기 위한 태그
+        **action : 폼안에 작성된 정보를 어디로 보낼거냐(css)-->
+     <form action="./04_6_ex1_aTag.html">
+        <!-- input 태그 : 다양한 방법으로 데이터를 받기위한 태그 
+            어떤데이터로 정보를 받을거냐?-->
+        <!-- <input type="text"> 일반적인 텍스트를 입력할 수 있는 속성(값) -->
+        <!-- required : 필수로작성해야하는 값에 적용하는 속성 (필수작성란) -->
+        <!-- palceholder : 유저한테 이게 어떤칸인지에 대한 정보를 주는속성 -->
+        <label for="input-id">ID</label>
+        <input type="text" id="input-id" required placeholder="ID를 입력하세요.">
+        <br>
+        <label for="input-pass">password</label>
+        <input type="password" name="" id="input-pass" required placeholder="PW를 입력하세요.">
+        <br>
+        <input type="email" readonly value="이메일이다.">
+        <!-- readonly value : 읽기전용으로 변환 -->
+        <!-- <input type="password" name=""> 패스워드 입력창 -->
+        <!-- <br>
+        <input type="email" name="" id=""> -->
+        <!-- name : php / id : 고유식별번호 -->
+        <br><br>
+        <input type="checkbox" name="food" id="chk-1">
+        <label for="chk-1">돈까스</label>
+        <br>
+        <input type="checkbox" name="food" id="chk-2">
+        <label for="chk-2">짜장면</label>
+        <br>
+        <input type="checkbox" name="food" id="chk-3">
+        <label for="chk-3">샌드위치</label>
+        <!-- label 태그는 메인태그 뒤에 들어감 -->
+        <!-- name을 일치시키면 묶음의 정보로 인식됌(하나의데이터) -->
+        <br><br>
+        <input type="radio" name="fruit" id="radio-1">
+        <label for="radio-1">사과</label><br>
+        <input type="radio" name="fruit" id="radio-2">
+        <label for="radio-2">바나나</label><br>
+        <input type="radio" name="fruit" id="radio-3">
+        <label for="radio-3">자몽</label>
+        <br><br>
+        <input type="date">
+        <!-- 브라우저에서 제공하는 달력이 나온다. -->
+        <br><br>
+        <input type="range" min="0" max="10">
+        <!-- min : 최소값 max : 최대값 -->
+        <br>
+        <input type="number" min="0" max="10">
+        <!-- 지정된 값 외에 숫자를 적을경우 인식되지않음 -->
+        <br>
+
+
+        <!-- input button은 요즘은 잘 안쓴다. -->
+        <!-- <input type="button" value="인풋버튼">
+        <br>
+        <input type="submit" value="인풋 서브밋">
+        <br>
+        <input type="reset" value="인풋리셋">
+        <br>
+        <br> -->
+        <br>
+        <!-- textarea : 긴 글을 작성할 수 있는 텍스트폼
+            col : 가로길이
+            rows : 세로길이
+            창의 크기를 제어하는건 css 에서 제어가능. -->
+        <textarea cols="30" rows="20"></textarea>
+        <br>
+        <select name="poketmon" id="poketmon">
+            <option value="0">피카츄</option>
+            <option value="1">라이츄</option>
+            <option value="2">파이리</option>
+            <!-- 피카츄를 선택하면 우리한테는 0번을 선택했다고 뜸.
+                보통은 숫자를 0으로 시작함. -->
+            <!-- name을 봤을때 어떤폼인지 알아볼수 있어야하기 때문에 명확히 이름지어 구분. -->
+        </select>
+        <br>
+        <fieldset>
+            <legend>정보 입력</legend>
+            <label for="id">ID : </label>
+            <input type="text">
+        </fieldset>
+        <!-- fieldset은 정보들을 그룹화 시켜줌 (현업에선 css로하기때문에 잘 사용x) -->
+        <br>
+        <button type="button">button</button>
+        <button type="submit">submit</button>
+        <button type="reset">reset</button>
+        <!-- 개별로 리셋시키는건 자바스크립트에서만 가능 -->
+     </form>
+
+</body>
+</html>
