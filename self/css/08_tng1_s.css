@@ -1,0 +1,30 @@
+.header {
+    background-color: #000;
+    padding-left: 15px;
+    padding-top: 20px;
+}
+.h1-1 {
+    color: #fff;
+    margin: 0px;
+}
+.color-orange {
+    color: orange;
+    margin: 0px;
+    padding-bottom: 10px;
+}
+.main {
+    border: 1px solid #000;
+    margin-top: 10px;
+}
+.main-p-1 {
+    background-color: #000;
+    color: #fff;
+    margin-top: 0px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+h2 {
+    color: red;
+    text-align: center;
+}
