@@ -1,0 +1,108 @@
+h1 {
+    margin: 10px;
+    /* 너비조절 */
+    width: 100px; /*콘텐츠의 너비*/
+    /*높이 조절*/
+    height: 150px; /* '' 높이 */
+}
+.size-p{
+    background-color: chocolate;
+    width: 50%; /*브라우저가 '보여지는 영역' 기준*/
+    height: 30%;
+}
+.size-div {
+    width: 200px;
+    height: 200px;
+}
+.size-div p {
+    background-color: chocolate;
+    width: 50vw;
+    height: 50vh;
+}
+
+.container {
+    width: 300px;
+    border: 3px solid #000;
+}
+
+div {
+    border: 3px solid red;
+}
+.div-1 {
+    /* 상하좌우 5px */
+    margin: 5px;
+}
+.div-2 {
+    /* 상하 5px 좌우10ox */
+    margin: 5px 10px;
+}
+.div-3 {
+    /* 상5px 좌우10px 하15px */
+    margin: 5px 10px 15px;
+}
+.div-4 {
+    /* 상5px 우10px 하15px 좌20px */
+    margin: 5px 10px 15px 20px;
+}
+.div-5 {
+    /* 자동 가운데정렬 */
+    width: 100px; /*div영역의 크기*/
+    margin: auto;
+}
+/* margin-left:
+    margin-right:
+    margin-top:
+    margin-bottom:
+    으로도 마진을 설정할 수 있음 */
+/* 상하 마진은 중첩이 되서 크기가 큰쪽으로 흡수됨
+        (큰쪽이 적용된다) */
+/* 좌우마진은 중첩현상이 없음 */
+
+.padding-div-1 {
+    padding: 5px;
+} /*콘텐츠와 외곽선 내부의 여백*/
+    /*상하좌우*/
+.padding-div-2 {
+    /*상하5px , 좌우10px*/
+    padding: 5px 10px;
+}
+.padding-div-3 {
+    /* 상5px 좌우10px 하15px */
+    padding: 5px 10px 15px;
+}
+.padding-div-4 {
+    /* 상5 우10 하15 좌20 */
+    padding: 5px 10px 15px 20px;
+}
+/* padding은 오토가 없음 */
+/* padding으로는 가운데정렬이 안되고, text align을 넣어야됨 */
+.div-shadow {
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    /* 수평거리, 수직거리, 흐림정도, 번짐정도, 색상, 그림자방향(은 생략가능) */
+    box-shadow: 10px 20px 10px 10px yellow;
+    /* 수평:양수(우) 음수(좌) 수직:양수(하) 음수(상) */
+    /* 그림자방향 부분에 inset 넣으면 박스 안쪽으로 그림자 생성 */
+}
+
+/* 마진,패딩,콘텐츠 합해서만드는거 */
+.div-content {
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+    padding: 20px;
+    box-sizing: content-box;
+    /* 이렇게 설정하면 디폴트값임 */
+    /* ↑콘텐츠 영역에만을 요소의 크기를 결정 */
+}
+.div-border {
+    /* 테두리+패딩+콘텐츠 영역으로 요소의 크기를 결정 */
+    box-sizing: border-box; /* 컨텐츠박스를 조절함 */
+    /* content-box 는 디폴트걊 */
+
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+    padding: 20px;
+}

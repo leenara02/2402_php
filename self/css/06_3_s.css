@@ -1,0 +1,30 @@
+* {
+    color: aqua;
+}
+
+h1 {
+    color: red;
+}
+
+p {
+    color: green;
+}
+
+.color-orange {
+    color: orange;
+}
+.font-size-3rem {
+    font-size: 3rem;
+} /*폰트의px에 대한 배율*/
+
+.color-black {
+    color: black;
+}
+
+#p-2 {
+    color: blueviolet;
+}
+
+h1, p, #p-2 {
+    color: brown;
+}

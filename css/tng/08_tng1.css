@@ -1,0 +1,52 @@
+.background {
+    background-color: #000;
+}
+.white {
+    color: white;
+}
+.yellow {
+    color: orange;
+}
+.red {
+    color: red;
+}
+.blue {
+    color: blue;
+}
+#bold {
+    font-weight: 400;
+}
+.border-1 {
+    border: 2px solid #000;
+    box-sizing: border-box;
+    width: 600px;
+    height: 150px;
+    padding-left: 15px;
+}
+.border-2 {
+    border: 2px solid #000;
+    box-sizing: border-box;
+    width: 600px;
+    height: 40px;
+    padding-left: 10px;
+    padding-top: 8px;
+    margin-top: 10px;
+}
+.border-3 {
+    box-sizing: border-box;
+    width: 600px;
+}
+.bold {
+    font-weight: 900;
+}
+.middle {
+    width: 600px;
+    margin: auto;
+}
+.center {
+    text-align: center;
+}
+
+.align {
+    line-height: 30px;
+}
