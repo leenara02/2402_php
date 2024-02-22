@@ -15,10 +15,12 @@
 .main {
     border: 1px solid #000;
     margin-top: 10px;
+
 }
 .main-p-1 {
     background-color: #000;
     color: #fff;
+    text-align: center;
     margin-top: 0px;
     padding-top: 10px;
     padding-left: 10px;
@@ -27,4 +29,12 @@
 h2 {
     color: red;
     text-align: center;
+}
+.main-p-2 {
+    text-align: center;
+    font-weight: 900;
+    line-height: 2rem;
+}
+span {
+    color: blue;
 }
