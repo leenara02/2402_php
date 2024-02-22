@@ -1,0 +1,25 @@
+.main {
+    border: 1px solid #000;
+    width: 500px;
+    height: 500px;
+}
+.div-po1, .div-po2, .div-po3 {
+    border: 1px solid #000;
+    width: 150px;
+    height: 150px;
+}
+.div-po1 {
+    position: relative;
+    top: 50px;
+    left: 50px;
+}
+.div-po2 {
+    position: relative;
+    top: -40px;
+    left: 250px;
+}
+.div-po3 {
+    position: relative;
+    top: -20px;
+    left: 50px;
+}

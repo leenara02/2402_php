@@ -1,0 +1,45 @@
+/* 포지션을 이용한 경우 */
+/* 
+.container {
+    position: relative;
+    height: 530px;
+}
+.section1 {
+    top: 2%;
+    left: 2%;
+}
+.section2 {
+    top: 2%;
+    right: 2%;
+}
+.section3 {
+    bottom: 2%;
+    left: 2%;
+}
+.section4 {
+    bottom: 2%;
+    right: 2%;
+}
+
+ */
+
+/* float이용 */
+.header, .footer {
+    width: 700px;
+}
+
+.container > div {
+    border: 1px dashed #b2b2b2;
+    padding: 1rem;
+    width: 320px;
+    float: left;
+}
+
+.footer {
+    background-color: black;
+    height: 50px;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+    clear: left;
+}

@@ -7,7 +7,7 @@ h1 {
 }
 .size-p{
     background-color: chocolate;
-    width: 50%; /*브라우저가 '보여지는 영역' 기준*/
+    width: 50%; 
     height: 30%;
 }
 .size-div {
@@ -16,14 +16,14 @@ h1 {
 }
 .size-div p {
     background-color: chocolate;
-    width: 50vw;
+    width: 50vw; /*브라우저가 '보여지는 영역' 기준*/
     height: 50vh;
 }
 
-.container {
+/* .container {
     width: 300px;
     border: 3px solid #000;
-}
+} */
 
 div {
     border: 3px solid red;

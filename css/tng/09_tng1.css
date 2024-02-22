@@ -1,0 +1,7 @@
+div {
+    height: 300vh;
+    background-image: url(../img/docker.png);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: top 10px right 10px; /*상하,좌우 또는 상,우,하,좌 순*/
+}

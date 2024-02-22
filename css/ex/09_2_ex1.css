@@ -1,0 +1,44 @@
+div{
+    margin: 5px;
+    border: 3px solid #000;
+    width: 200px;
+    height: 100px;
+    background-image: url('../img/docker.png');
+}
+.auto {
+    /*원본 크기를 유지 (defult)*/
+    background-size: auto;
+}
+.contain {
+    /*요소 안에 배경 이미지가 다 들어오도록 확대 및 축소*/
+    background-size: contain;
+}
+.cover {
+    /*요소를 모두 덮도록 이미지를 확대 및 축소*/
+    background-size: cover;
+}
+.px {
+    /*하나의 값을 주어 너비를 지정하고, 높이는 너비에 맞게 자동 계산*/
+    background-size: 10px;
+}
+.vw {
+    /*이미지의 비율에 맞도록 조절*/
+    background-size: 50%; /*부모요소 기준, 너비로 조절됨*/
+}
+
+/* 이미지의 위치 지정 */
+/* 스크롤픽스 하면 스크롫 해도 정해진위치에 고정됨 */
+.position-center {
+    /* 이미지를 가운데 지정 */
+    background-position: center;
+}
+.position-top-right {
+    /* 원하는 위치로 조정 (px) */
+    background-position: top 10px right 10px;
+}
+
+/* 이미지의 반복요소를 결정하는 방법 */
+.no-repeat {
+    /* 반복하지 않음 */
+    background-repeat: no-repeat;
+}

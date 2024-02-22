@@ -1,0 +1,29 @@
+.bk-color1 {
+    width: 100px;
+    height: 100px;
+    background-color: cornflowerblue;
+    border: 5px dotted #000;
+    padding: 10px;
+    /* 배경색 범위 지정 */
+    background-clip: border-box;디폴트값
+}
+.bk-color2 {
+    width: 100px;
+    height: 100px;
+    background-color: cornflowerblue;
+    border: 5px dotted #000;
+    padding: 10px;
+    /* 배경색 범위 지정 */
+    background-clip: padding-box;
+}
+.bk-color3 {
+    width: 100px;
+    height: 100px;
+    background-color: cornflowerblue;
+    border: 5px dotted #000;
+    padding: 10px;
+    /* 배경색 범위 지정 */
+    /* background-clip: border-box;디폴트값 */
+    /* background-clip: padding-box; */
+    background-clip: content-box;
+}

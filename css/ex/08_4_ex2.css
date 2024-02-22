@@ -1,0 +1,15 @@
+ul {
+    list-style-type: none;
+}
+li {
+    display: inline-block;
+    background-color: gray;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    margin-right: -6px;
+    /* border: 3px solid #000;
+    border-right: none; */
+    /* box-sizing: border-box; */
+}
