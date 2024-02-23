@@ -1,0 +1,38 @@
+/* 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+*/
+body {
+    background-color: #000;
+}
+.container {
+    width: 500px;
+    height: 650px;
+    background-color: white;
+    margin: auto;
+    padding: 1.5rem 1rem;
+    background-image: url(../../css/img/img.png);
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: bottom 1px right 1px;
+}
+h1 {
+    background-color: skyblue;
+    color: #fff;
+    text-align: center;
+    height: 80px;
+    line-height: 80px;
+}
+h2 {
+    text-align: center;
+}
+h3 {
+    color: red;
+}
+li {
+    list-style-type: none;
+    line-height: 25px;
+}
