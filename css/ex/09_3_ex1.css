@@ -1,0 +1,19 @@
+div {
+    width: 150px;
+    height: 150px;
+    margin: 5px;
+}
+.line-1 {
+    background: linear-gradient(45deg,white, blue, white);
+    /* 색상 앞에 to 위치를 붙이면 여기서부터 그라데이션이 시작된다를 지정. */
+    /* 각도를 조정하고 싶을 때는 색상앞에 숫자deg를 작성*/
+    /* 색상뒤에 % : 영역내 몇%에 위치시킬거냐 */
+}
+.cir-1 {
+    height: 50px;
+    background: radial-gradient(circle at 0% 20%, white, blue, white);
+    /*영역의 크기에 따라 타원형이 될 수 있음*/
+    /* 직사각형의 영역에서 원형을 유지하고싶을 경우 색상앞에 circle을 붙여줌 */
+    /* 원형 중심에서 그라데이션 퍼센트를 조정할땐 closest-corner을 붙인 후 색상뒤에 퍼센트를 붙임 */
+    /* 그라데이션 위치를 조정할 땐 색상 앞에 at 가로%, 세로%로 조정함. ex) 0%면 중심이 왼쪽으로감.  */
+}

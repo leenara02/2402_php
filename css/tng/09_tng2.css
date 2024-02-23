@@ -1,0 +1,47 @@
+.background {
+    background-color: black;
+    width: 600px;
+    height: 750px;
+    box-sizing: border-box;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.white {
+    box-sizing: border-box;
+    background-color: white;
+    width: 500px;
+    height: 710px;
+    position: relative;
+    top: 5px;
+    padding: 25px;
+    padding-bottom: 0px;
+    background-image: url(../img/meerkat.jpg);
+    background-repeat: no-repeat;
+    background-position: bottom 3px right 3px;/*사진 자체가 위아래로 흰색이 있음..*/
+    background-size: 65%;
+}
+header {
+    background-color: rgb(16, 59, 40);
+    color: #fff;
+    width: 450px;
+    height: 75px;
+    text-align: center;
+    line-height: 75px;
+}
+h2 {
+    font-size: 30px;
+}
+h3 {
+    font-size: 23px;
+    text-align: center;
+}
+.p-1 {
+    color: red;
+    font-weight: 900;
+    font-size: 17px;
+}
+.p-2 {
+    font-size: 15px;
+    padding-left: 40px;
+    line-height: 25px;
+}

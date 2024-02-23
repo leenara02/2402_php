@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #000;
+}
+.container {
+    border: 2px dotted #2d2d2d;
+    background-color: #fff;
+    width: 650px;
+    height: 700px;
+    margin: 1rem auto; /*마진 좌우오토는 가운데정렬*/
+    padding: 2rem;
+    background-image: url(../img/meerkat.jpg);
+    background-repeat: no-repeat;
+    background-position: bottom 3px right 3px;
+    background-size: 50%;
+}
+h1{
+    background-color: rgb(38, 68, 69);
+    color: #fff;
+    padding: 1.5rem;
+    text-align: center;
+    width: 550px;
+    margin: 0 auto;
+}
+h2 {
+    width: 550px;
+    text-align: center;
+    margin: 2rem auto;
+}
+h3 {
+    color: #ff0000;
+    margin: 1rem;
+}
+ul {
+    list-style-type: none;
+    margin-left: 3rem;
+}
+li {
+    margin: 0.5rem;
+}
+
+/*레이아웃 잡을때는 포지션으 써버리면 수정이 어려움. 되도록이면 지양*/

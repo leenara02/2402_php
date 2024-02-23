@@ -1,0 +1,77 @@
+/* 가상선택자 or 의사 선택자 (일본어판 번역하면서 생긴 용어) 번역하는사람에 따라 다르게 읽음 */
+/* html요소의 상태에 따라 선태갷 스타일을 지정하는 선택자
+기본 형태 >> 선택자:가상(의상)클래스명
+*/
+/* :link : 아직 방문하지 않은 링크 요소를 선택 */
+a:link {
+    color: green;
+}
+/* :visited : 방문한 적 있는 링크 요소를 선택 */
+a:visited {
+    color: blue;
+}
+/* :hover : 마우스 커서가 올라가 있는 요소를 선택 */
+/* 링크가 아니더라도 동작함 */
+a:hover {
+    color: red;
+}
+/* :active : 링크를 클릭하고 있는 요소를 선택 ex)클릭할때 색깔이 나타나도록 하는것 */
+/* 단독으로 사용하면 잘 안보이기 때문에 단독으로는 잘 안씀 */
+a:active {
+    background-color: cadetblue;
+}
+/* :focus : 포커스가 적용되어 있는 요소를 선택 */
+input:focus {
+    border: 3px solid red;
+    outline: none; /*포커스 시 기본으로 적용되는 테두리를 제거*/
+}
+/* :checked : 체크된 상태의 input요소를 선택 */
+/* 인접형제선택자를 사용해서 조합해서 사용함. */
+input:checked + label {
+    font-weight: 900;
+}
+/* :target : 문서 내부 링크의현재 화성화 된 요소를 선택 */
+#p-1:target {
+    background-color: burlywood;
+}
+#p-2:target {
+    background-color: skyblue;
+}/*ex) 메뉴1을 눌렀을때 p-1으로 이동하면 p-1부분(타겟된부분)이 활성화되었기 때문에 스타일이 적용됨*/
+
+/* :not(선택자) : 해당 선택자를 제외한 나머지 요소를 선택 */
+.container1 :not(span) {
+    color: blue;
+}/*컨테이너1이랑 낫선택자 사이에 스페이스는 후손선택자임*/
+
+/* :nth-child(숫자n) : n번재 자식 요소를 선택 */
+ul :nth-child(3) {
+    color: red;
+}
+/* :nth-child(n + 숫자) : 숫자 번째 자식요소부터 끝까지 선택 */
+ul :nth-child(n + 4) {
+    color: blue;
+}/*ul이랑 :사이는 후손선택자, 괄호안에있는 스페이스는 의미x*/
+
+/*  :nth-child(-n + 숫자) : 처음부터 숫자 번째 자식요소까지 선택 */
+ul :nth-child(-n + 4) {
+    color: yellow;
+}
+/* :nth-child(n + 숫자):nth-child(-n + 숫자) : 범위로 자식요소를 선택 */
+/* nth중에 우선순위가 높음. (적어도 홀수짝수보단 높음) */
+ul :nth-child(n + 2):nth-child(-n + 4) {
+    color: aqua;
+}
+
+/* :nth-child(odd || even) 홀수 또는 짝수 번째 자식 요소를 선택 */
+ul :nth-child(odd) {
+    background-color: beige;
+}
+ul :nth-child(even) {
+    background-color: chocolate;
+} /*이방법을 가장 많이 이용함.*/
+
+/* 선택자:nth-of-type(숫자) : 해당 선택자의 n번째 요소에 스타일 적용 */
+/* ex)컨테이너1 자식p중에 몇번째 요소에 지정하겠다 */
+.container1 p:nth-of-type(2) {
+    background-color: rgb(115, 250, 250);
+}
