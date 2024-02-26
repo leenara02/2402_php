@@ -1,0 +1,55 @@
+/* vertical-align : text-top */
+fieldset {
+    background-image: url(../img/docker.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 500px;
+}
+legend {
+    color: hotpink;
+    font-size: 30px;
+    font-weight: 900;
+}
+label {
+    font-weight: 900;
+}
+input {
+    background:none;
+}
+textarea {
+    background: none;
+}
+#memo {
+    vertical-align : text-top
+}
+input:focus {
+    outline: none;
+    border: 3px solid #ff0000;
+}
+textarea:focus {
+    outline: none;
+    border: 3px solid #ff0000;
+}
+input[type="radio"]:checked + label {
+    color: #ff0000;
+}
+label[for='name']::before {
+    content: '*';
+    color: #ff0000;
+}
+label[for='age']::before {
+    content: '*';
+    color: #ff0000;
+}
+label[for='man woman']::before {
+    content: '*';
+    color: #ff0000;
+}
+.send-1 {
+    background-color: #000;
+    color: #fff;
+    display: none;
+}
+.send:hover + .send-1 {
+    display: inline-block;
+}

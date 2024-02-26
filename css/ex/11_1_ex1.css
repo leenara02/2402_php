@@ -1,0 +1,16 @@
+div {
+    background-image: url('../img/dog.jpg');
+    width: 500px;
+    height: 500px;
+}
+div:hover {
+    animation: test 2s forwards; /*마우스올렸을때만 효과를 주고싶을때*/
+}
+@keyframes test {
+    from {
+        transform: scale(1); /*translate는 이동, scale은 확대*/
+    }
+    to {
+        transform: scale(2); /* 괄호안에 X,Y,Z순서임 */
+    }
+}

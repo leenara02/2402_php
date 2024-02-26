@@ -5,7 +5,7 @@
     border: 5px dotted #000;
     padding: 10px;
     /* 배경색 범위 지정 */
-    background-clip: border-box;디폴트값
+    background-clip: border-box;
 }
 .bk-color2 {
     width: 100px;
