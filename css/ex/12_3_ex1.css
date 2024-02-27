@@ -1,0 +1,43 @@
+.container {
+    background-color: gray;
+    display: grid;
+    /* grid-template-columns : 행과 너비의 크기와 갯수 조절 */
+    grid-template-columns:50px 1fr 1fr;
+    /* px하나당 하나의 행(가로) */
+    /* fr : 남은크기를 비율만큼 나눠가짐 / 그리드 시스템에서 남은 영억을 비율로써 나누어 지정*/
+    /* 1fr 1fr = 1 : 1 */
+
+    /* grid-template-rows : 열과 높이의 크기와 갯수 조절 */
+    grid-template-rows: 1fr 2fr 3fr 1fr;
+    /* 부모영역의 height가 지정이 안되있을 겅우 컨텐츠크기 기준으로 비율만큼 지정 */
+
+}
+.item {
+    background-color: skyblue;
+    border: 1px solid #000;
+}
+.container-repeat {
+    display: grid;
+    /* repeat(반복횟수, 반복값) 이 밑에 다 현업에서 많이 사용*/
+    /* minmax(최소값, 최대값) */
+    /* auto-fit, auto-fill : 자동으로 컬럼 수를 조절 */
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 5px;
+    /* 셀 사이에 여백이 생김. 부모영역의 여백을 만들려면 부모영역에 패딩을 줌 */
+}
+.container_area {
+    background-color: gray;
+    padding: 10px;
+    display: grid;
+    /* 보통 colums만 쓰고, row는 자동으로 늘어나도록 설정을 안해둠 */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+}
+.item1 {
+    grid-column: 1 / 3;
+    grid-row: 1 / 4;
+}
+.item7 {
+    grid-column: 3/4;
+    grid-row: 4/6;
+}

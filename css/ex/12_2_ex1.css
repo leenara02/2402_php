@@ -1,0 +1,58 @@
+/* flex box
+    행 또는 열로 항목의 무리를 배치하는 1차원 레이아웃 시스템
+    내가 효과를 주고싶은 항목의 부모항목에 flex속성을 줌
+    부모영역 안에서만 정렬이 됨 (플로트와 다른점)
+    */
+.container {
+    background-color: blueviolet;
+    /* padding: 10px 0; */
+    display: flex;
+    /*flex-direction: 주축의 방향을 조절하는 속성*/ /*-reverse : 주축의 방향(순서)이 바뀜(현업 잘x)*/
+    /* flex-direction: row; / column:세로로 배치 row: 가로정렬(디폴트) */
+    /* flex-wrap : 항목의 줄을 바꿀지 말지를 지정 */
+    /* flex-wrap: wrap; / no-wrap:디폴트, 화면이 박스보다 작아지면 박스가 줄어듬 */
+    /*wrap:화면이 박스보다 작아지면 박스를 아랫줄로 내려 정렬*/
+    /* flex-flow: flex-diretion과 flex-wrap을 한번에 지정 */
+    flex-flow: row wrap;
+    /* justify-content : 주축을 기준으로 정렬 */
+    /* justify-content: space-around; */
+    /* flex-start : 디폴트 / 주축의 시작지점을 기준으로 정렬 */
+    /* flex-end : 주축이 끝나는 지점을 기준으로 정렬 */
+    /* center : 자동으로 주축의 중앙에 정렬 */
+    /* space-between : 주축의 시작과 끝에 아이템을 주고, 그 사이 여백을 자동으로 조절 */
+    /* space-around : 주축의 양 옆에 여백을 주고, 아이템 사이여백을 자동으로 조절 (양옆과 아이템사이의 여백이 다른건 어쩔 수 없음)*/
+
+    /* align-items : 교차축을 기준으로 정렬 */
+    height: 200px;
+    /* align-items: stretch; */
+    /* flex-start : 교차축을 기준으로 시작지점으로부터 정렬 */
+    /* flex-end : 교차축을 기준으로 끝지점으로부터 정렬 */
+    /* center : 교차축을 기준으로 중앙에 정렬 */
+    /* baseline : 컨텐츠의 밑줄을 기준으로 정렬 (일그러져서 현업에선x) */
+    /* stretch : 전체 영역을 다 쓰도록 아이템박스를 늘려서 정렬 (많이이용x) */
+
+    /* align-content: 교차축 여러줄을 어떻게 정렬할건가 */
+    align-content: space-around;
+    justify-content: space-around;
+    /* 교차축의 시작지점에 바짝 붙여서 정렬 */
+    /* 교차축의 끝지점에 붙여서 정렬 */
+    /* 교차축의 중앙에 정렬 */
+    /* 교차축의 시작과 끝지점에 붙인 후, 중간여백을 자동조절 */
+    /* 교차축의 시작과 끝에 여백주고, 사이에 중간여백 자동조절 */
+    /* al과ju를 조합해서 정렬하는 경우가 많음 */
+}
+
+/* .item5 { */
+/* align-self : 교차축 기준으로 하나의 아이템을 정렬 (아이템 하나의 위치를 조정)(현업사용x) */
+    /* align-self: flex-start; */
+/* } */
+
+.item {
+    background-color: skyblue;
+    width: 150px;
+    height: 30px;
+    border: 1px solid #000;
+}
+
+
+

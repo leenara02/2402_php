@@ -1,0 +1,34 @@
+/* 미디어 쿼리
+    브레이크 포인트 (종단점)을 이용해 어떤 css를 적용할지 지정(특정지점에서 멈춘다)
+*/
+/* 스크린,올,프린트 */
+/* 모바일크기, 태블릿크기, pc크기 */
+/* 
+- screen : 주로 화면이 대상 (default) 생략하면 스크린으로 적용됨(생략가능)
+- all : 모든 장치에 적합
+- print : 인쇄 결과물 및 출력 미리보기 화면에 표시 중인 문서
+*/
+/* 폰트사이즈, 레이아웃조절 등 미디어쿼리로 가능 */
+/* 미디어쿼리 중괄호 안에는 모든 css를 다 넣을 수 있음 */
+.bk_div {
+    width: 200px;
+    height: 200px;
+    /* background-color: blue; */
+ }
+@media screen and (max-width: 500px)/*세미콜론생략가능*/ {
+    .bk_div {
+        background-color: red;
+    }
+}
+@media screen and (min-width: 501px) and (max-width: 1000px) {
+    .bk_div {
+        background-color: yellow;
+    }
+}
+@media screen and (min-width: 1001px) {
+    .bk_div {
+        background-color: pink;
+        width: 1000px;
+    }
+}
+

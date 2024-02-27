@@ -1,0 +1,16 @@
+.container {
+    padding: 5px;
+    width: 500px;
+    height: 500px;
+    background-color: gray;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+}
+.item {
+    background-color: cadetblue;
+    border: 1px solid #000;
+    width: 49%;
+    height: 32%;
+}
