@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.container {
+    border: 1px solid #000;
+    width: 500px;
+    height: 500px;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: 100px 1fr;
+}
+.logo {
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search {
+    border: 1px solid #000;
+}
+.manu {
+    border: 1px solid #000;
+}
+.main {
+    border: 1px solid #000;
+}

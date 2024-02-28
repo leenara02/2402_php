@@ -1,0 +1,26 @@
+.container {
+    background-color: gray;
+    width: 500px;
+    height: 550px;
+    display: grid;
+    padding: 10px;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+.item {
+    background-color: cadetblue;
+
+}
+.container2 {
+    background-color: gray;
+    display: grid;
+    padding: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 200px));
+    gap: 10px;
+    
+}
+.item2 {
+    background-color: cadetblue;
+    width: 200px;
+    height: 200px;
+}
