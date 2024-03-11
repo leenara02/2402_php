@@ -133,6 +133,69 @@ SELECT DISTINCT emp_no
 FROM salaries
 WHERE emp_no = 10001;
 
+-- 20240305 강의
 
+-- GROUP BY 절 , HAVING 절 : (하나의 세트) 그룹으로 묶어서 조회
+-- GROUP BY [그룹으로 묶을 컬럼] HAVING [그룹을 묶을때의(집계함수)  조건]
+SELECT
+	gender
+	,COUNT(gender)
+FROM employees
+GROUP BY gender;
 
+-- 현재 재직중인 직원의 직책별 사원수 조회
+SELECT
+	title
+	,COUNT(title)
+FROM titles
+WHERE to_date >= 20240305
+GROUP BY title HAVING title LIKE('%Engineer%')
+;
+-- 각 사원의 최고 연봉을 조회
+SELECT
+	emp_no
+	,MAX(salary)
+FROM salaries
+GROUP BY emp_no;
+-- 각 사원의 최고연봉 중 80000 이상을 조회
+SELECT
+	emp_no
+	,MAX(salary)
+FROM salaries
+GROUP BY emp_no HAVING MAX(salary) >= 80000;
 
+-- AS : 컬럼에 별칭 부여 (생략가능)
+SELECT
+	emp_no
+	,MAX(salary) max_sal
+FROM salaries AS sal
+GROUP BY emp_no HAVING MAX(salary) >= 80000;
+
+-- LIMIT, OFFSET(~서 시작하다) : 출력하는 데이터의 갯수를 제한
+SELECT * 
+FROM employees
+LIMIT 5 OFFSET 10;
+-- OFFSET 키워드 생략하면 아래와 같음
+SELECT * 
+FROM employees
+LIMIT 10, 5;
+
+-- 가장 높은 연봉을 받는 사원번호 조회
+SELECT emp_no, MAX(salary) AS max_sal
+FROM salaries
+GROUP BY emp_no
+ORDER BY max_sal DESC
+LIMIT 1;
+-- 재직중인 사원 중 급여 상위 5위까지 조회
+SELECT emp_no, max(salary)
+FROM salaries
+WHERE to_date=99990101
+GROUP BY emp_no
+ORDER BY salary DESC
+LIMIT 5;
+-- 강사님 쿼리 : 웨어절에서 레코드를 하나만 뽑았기 때문에 그룹 처리가 무의미함
+SELECT emp_no, salary
+FROM salaries
+WHERE to_date >=20240305
+ORDER BY salary DESC
+LIMIT 5;
