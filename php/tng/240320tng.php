@@ -14,31 +14,15 @@
 // 3의 배수를 제외(3의배수를 건너띄는 컨티뉴?)(3의배수를 없애는문..)
 // 포맷은 "$u 입니다."
 
-// $tmp = [];
-
-// $arr = range(1,100);
-// foreach($arr as $val){
-//     $tmp[] = $arr[$val];
-
-//         if($i == $val){
-//             unset($tmp[$val]);
-//         }
-//         else{
-            
-//             $base_msg = "%u 입니다.\n";
-//         }
-//         echo $print_msg = sprintf($base_msg, $val);
-
-// }
-
-$base_msg = "%u 입니다.\n";
-$i=1;
-while($i < 100){
-    if(($i %= 3)===0){
+$tmp=[];
+for($i=0; $i<101; $i++){
+    if(($i % 3)==0){
         continue;
     }
     else{
+        $base_msg = "%u 입니다.\n";
         echo $print_msg = sprintf($base_msg, $i);
     }
-    $i++;
 }
+
+// 대박.. 내가풀어따...
