@@ -1,0 +1,12 @@
+CREATE DATABASE my_list;
+
+USE my_list;
+
+CREATE TABLE boardlist (
+	id					INT				PRIMARY KEY AUTO_INCREMENT
+	,title 			VARCHAR(50)		NOT NULL
+	,content 		VARCHAR(2000)	NOT NULL 
+	,created_at 	DATETIME			NOT NULL DEFAULT CURRENT_TIMESTAMP()
+	,updated_at		DATETIME			NOT NULL DEFAULT CURRENT_TIMESTAMP()
+	,deleted_at		DATETIME
+);
