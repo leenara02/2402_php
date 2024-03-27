@@ -77,3 +77,57 @@ function db_insert_boards(&$conn, &$array_param){
     // 리턴
     return $stmt->rowCount(); // INT 반환 // 1행이 왔는지 확인
 }
+
+// PK로 게시글 정보 조회
+function db_select_boards_no(&$conn, &$array_param) {
+    //SQL
+    $sql =
+        " SELECT "
+        ."  no "
+        ." ,title "
+        ." ,content "
+        ." ,created_at "
+        ." FROM		 "
+        ." 	boards "
+        ." WHERE "
+        ." 	no = :no "
+    ;
+    //Query 실행
+    $stmt = $conn->prepare($sql);
+    $stmt->execute($array_param);
+    $result = $stmt->fetchAll();
+
+    // 리턴
+    return $result;
+}
+
+// PK로 특정 게시글 삭제처리
+function db_delete_boards_no(&$conn, &$array_param){
+    // SQL
+    $sql =
+        " UPDATE "
+        ."  boards "
+        ." SET "
+        ."  deleted_at = NOW()"
+        ." WHERE "
+        ."  no = :no "
+    ;
+    // Query 실행
+    $stmt = $conn->prepare($sql);
+    $stmt->execute($array_param);
+    
+    // 리턴
+    return $stmt->rowCount(); 
+}
+
+
+
+
+// $sql =
+//     " SELECT "
+//     ." no "
+//     ." SET "
+//     ." title = "
+//     ." :title "
+//     ." ,content = "
+//     ." :content "

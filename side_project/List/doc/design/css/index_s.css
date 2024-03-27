@@ -3,6 +3,25 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.header {
+    margin: 0 auto;
+    width: 500px;
+    height: 90px;
+    position: relative;
+}
+
+.footprint {
+    position: absolute;
+    top: 30px;
+    left: 120px;
+}
+
+.footprint > img {
+    width: 70px;
+    height: 50px;
+}
+
 h1 {
     text-align: center;
     margin: 50px;
@@ -100,27 +119,19 @@ h1 > a {
 
 .footer {
     text-align: center;
+    position: relative;
+    width: 500px;
+    margin: 0 auto;
 }
 
 .cat {
     position: absolute;
-    right: 60px;
-    bottom: -215px;
+    right: -100px;
+    bottom: -30px;
 }
 
 .cat > img {
     width: 100px;
     height: 100px;
     transform: scaleX(-1);
-}
-
-.footprint {
-    position: absolute;
-    top: 77px;
-    left: 300px;
-}
-
-.footprint > img {
-    width: 70px;
-    height: 50px;
 }

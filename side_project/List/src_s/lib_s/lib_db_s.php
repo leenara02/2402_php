@@ -55,3 +55,9 @@ function db_select_boards_paging(&$conn, &$array_param) {
      // 리턴
      return $result;
  }
+
+ //게시글정보 획득
+ function db_select_board_no(&$conn, &$array_param){
+    //SQL
+    
+ }
