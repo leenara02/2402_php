@@ -13,8 +13,8 @@
 
 .footprint {
     position: absolute;
-    top: 30px;
-    left: 120px;
+    top: 6px;
+    left: 99px;
 }
 
 .footprint > img {
@@ -129,6 +129,17 @@ textarea {
     box-shadow: 0 4px 5px #acacac;
 }
 
+.done{
+    border: none;
+    background-color: #d9d9d9;
+    color: #000;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 5px #acacac;
+    font-size: 1rem;
+}
+
 .u_d {
     width: 150px;
 }
@@ -137,8 +148,9 @@ textarea {
     width: 50px;
 }
 
-.detail_footer a:hover {
+.detail_footer :hover {
     transition: all 0.3s; 
     color: #fff;  
     background-color: #000;
 } 
+

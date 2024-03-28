@@ -52,10 +52,9 @@ try {
 </head>
 <body>
 <?php require_once(FILE_HEADER); ?>
-    
     <div class="main">
         <div class="div_cre">
-            <a href="./insert.html" class="cre">Create</a>
+            <a href="./insert_s.php" class="cre">Create</a>
         </div>
         <div class="main_title">
             <div class="m_ti_no">NO.</div>

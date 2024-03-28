@@ -49,7 +49,7 @@ if (REQUEST_METHOD === "POST") {
         header("Location: list.php");
         exit;
     } catch (\Throwable $e) {
-        if(!empty($conn)) {
+        if(!empty($conn) && $conn->inTransaction()) {
             $conn->rollBack();
         }
         echo $e->getMessage();

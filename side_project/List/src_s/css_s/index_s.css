@@ -3,6 +3,25 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.header {
+    margin: 0 auto;
+    width: 500px;
+    height: 90px;
+    position: relative;
+}
+
+.footprint {
+    position: absolute;
+    top: 30px;
+    left: 120px;
+}
+
+.footprint > img {
+    width: 70px;
+    height: 50px;
+}
+
 h1 {
     text-align: center;
     margin: 50px;
