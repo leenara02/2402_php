@@ -32,22 +32,26 @@ try {
     $result = db_select_boards_no($conn, $arr_param);
 
     if(count($result) !== 1){
-       throw new Exception("Select Boards no count");
+       throw new Exception("Select Boards id count");
     }
     //아이템 셋팅
     $item = $result[0];
 
-    //페이지버튼 세팅
-    //게시글 수 조회
-    $result_board_cnt = db_select_boards_cnt($conn);
-    $list_cnt = 6;
-
     $max_board_id = max_id_sql($conn);
 
+    
+    // $sql = "SELECT id FROM boardlist WHERE $id < $result LIMIT 1";
+
+
+
+
+
     //버튼
-    $max_page_num = ceil($result_board_cnt / $list_cnt);
+    // $max_page_num = ceil($result_board_cnt / $list_cnt);
     $prev = ($id - 1) < 1 ? 1 : ($id - 1);
-    $next = ($id + 1) >= $max_board_id ? $max_board_id : ($id + 1); 
+    $next = ($id + 1) >= $max_board_id ? $max_board_id : ($id + 1); //TODO : +1말고 다음키로 넘어가는거 만들어야함.
+    $next1 = isset($result["deleted_at"]) ? $next : $next ;
+
 
 
 } catch (\Throwable $e) {
@@ -92,12 +96,12 @@ try {
     </div>
     <div class="detail_footer">
             <a href="./detail_s.php?id=<?php echo $prev ?>&page=<?php echo $page ?>" class="page">◀</a>
-            <a href="" class="u_d">수정</a>
-            <a href="" class="u_d">삭제</a>
-            <a href="./detail_s.php?id=<?php echo $next ?>&page=<?php echo $page ?>" class="page">▶</a>
+            <a href="update_s.php?id=<?php echo $id ?>&page=<?php echo $page ?>" class="u_d">수정</a>
+            <a href="./delete_s.php?id=<?php echo $id ?>&page=<?php echo $page ?>" class="u_d">삭제</a>
+            <a href="./detail_s.php?id=<?php echo $next; ?>&page=<?php echo $page ?>" class="page">▶</a>
     </div>
 </body>
 </html>
 
-<!-- TODO : 작업은 다 했는데 아이디가 최대치를 넘기는거, 페이지 안바뀌는거 수정해야됨. -->
+<!-- 게시글 인서트 하면 중간에 딜리트 된 애들때문에 안넘어가는거 수정해야됨. id+1 쪽 수정 -->
 
