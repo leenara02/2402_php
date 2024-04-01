@@ -93,6 +93,17 @@ function max_id_sql(&$conn){
     return $result[0]["id"];
 }
 
+function min_id_sql(&$conn){
+    $sql = 
+        " SELECT MIN(id) id FROM boardlist WHERE deleted_at IS NULL  ";
+    
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+
+    return $result[0]["id"];
+}
+
 // 인서트보드
 function db_insert_boards(&$conn, &$array_param){
     $sql =
@@ -139,4 +150,26 @@ function db_delete_boards_no(&$conn, &$array_param){
     $stmt->execute($array_param);
 
     return $stmt->rowCount();
+}
+
+function next_b(&$conn, &$array_param){
+    $sql =
+    " SELECT id FROM boardlist WHERE id > :id AND deleted_at IS NULL ORDER BY id ASC LIMIT 1 ";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute($array_param);
+    $result = $stmt->fetchColumn();
+
+    return $result ? $result : null;
+}
+
+function prev_b(&$conn, &$array_param){
+    $sql=
+    " SELECT id FROM boardlist WHERE id < :id AND deleted_at IS NULL ORDER BY id DESC LIMIT 1 ";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute($array_param);
+    $result = $stmt->fetchColumn();
+
+    return $result ? $result : null;
 }

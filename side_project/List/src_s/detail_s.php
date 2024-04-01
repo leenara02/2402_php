@@ -39,19 +39,11 @@ try {
 
     $max_board_id = max_id_sql($conn);
 
+    $min_board_id = min_id_sql($conn);
+
+    $prev_b_result = prev_b($conn, $arr_param);
     
-    // $sql = "SELECT id FROM boardlist WHERE $id < $result LIMIT 1";
-
-
-
-
-
-    //버튼
-    // $max_page_num = ceil($result_board_cnt / $list_cnt);
-    $prev = ($id - 1) < 1 ? 1 : ($id - 1);
-    $next = ($id + 1) >= $max_board_id ? $max_board_id : ($id + 1); //TODO : +1말고 다음키로 넘어가는거 만들어야함.
-    $next1 = isset($result["deleted_at"]) ? $next : $next ;
-
+    $next_b_result = next_b($conn, $arr_param);
 
 
 } catch (\Throwable $e) {
@@ -77,12 +69,10 @@ try {
     <div class="detail_main">
         <label for="title"><p class="item_title">Title</p></label>
         <div class="detail_title">
-            <!-- <input type="text" name="title" id="title"> -->
             <div class="content"><?php echo $item["title"] ?></div>
         </div>
         <label for="content"><p class="item_title">Content</p></label>
         <div class="detail_content">
-            <!-- <textarea name="content" id="content" cols="30" rows="10"></textarea> -->
             <div class="content"><?php echo $item["content"] ?></div>
         </div>
         <div class="side">
@@ -95,13 +85,12 @@ try {
         </div>
     </div>
     <div class="detail_footer">
-            <a href="./detail_s.php?id=<?php echo $prev ?>&page=<?php echo $page ?>" class="page">◀</a>
+            <a href="./detail_s.php?id=<?php if($prev_b_result !== null){echo $prev_b_result;} if($id == $min_board_id){echo $min_board_id;}?>&page=<?php echo $page ?>" class="page">◀</a>
             <a href="update_s.php?id=<?php echo $id ?>&page=<?php echo $page ?>" class="u_d">수정</a>
             <a href="./delete_s.php?id=<?php echo $id ?>&page=<?php echo $page ?>" class="u_d">삭제</a>
-            <a href="./detail_s.php?id=<?php echo $next; ?>&page=<?php echo $page ?>" class="page">▶</a>
+            <a href="./detail_s.php?id=<?php if($next_b_result !== null){echo $next_b_result;} if($id == $max_board_id){echo $max_board_id;}?>&page=<?php echo $page ?>" class="page">▶</a>
     </div>
 </body>
 </html>
 
-<!-- 게시글 인서트 하면 중간에 딜리트 된 애들때문에 안넘어가는거 수정해야됨. id+1 쪽 수정 -->
 

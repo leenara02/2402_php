@@ -3,7 +3,6 @@
 require_once( $_SERVER["DOCUMENT_ROOT"]."/config_s.php"); // 설정 파일 호출
 require_once(FILE_LIB_DB); // DB관련 라이브러리
 $list_cnt = 6; // 한 페이지 최대 표시 수
-$block_num = 5; // 블럭당 페이지 수
 $page_num = 1; // 페이지 번호 초기화
 
 
@@ -20,19 +19,6 @@ try {
 
     // 페이지관련 설정 셋팅
     $max_page_num = ceil($result_board_cnt / $list_cnt); // 최대 페이지 수
-    $total_block = floor($result_board_cnt / $block_num)-1; // 최대 페이지블럭수
-    $now_block = ceil($page_num / $block_num);
-    
-    $s_pageNum = ($now_block-1) * $block_num +1;
-    if($s_pageNum <= 0){
-        $s_pageNum = 1;
-    };
-
-    $e_pageNum = $now_block * $block_num;
-    if($e_pageNum > $max_page_num){
-        $e_pageNum = $max_page_num;
-    };
-
     $offset = $list_cnt * ($page_num - 1); // OFFSET
     $prev_page_num = ($page_num - 1) < 1 ? 1 : ($page_num -  1); // 이전 버튼 페이지 번호 
     $next_page_num = ($page_num + 1) > $max_page_num ? $max_page_num : ($page_num + 1); // 다음버튼 페이지 번호
@@ -54,6 +40,7 @@ try {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -89,23 +76,15 @@ try {
         </div>
     </div>
     <div class="footer">
-        <?php if($page_num <= 1){?>
-        <a href="./index_s.php?page=<?php echo $page_num; ?>" class="page_button">◀</a>
-        <?php } else {?>
-            <a href="./index_s.php?page=<?php echo ($page_num-1); ?>" class="page_button">◀</a>
-            <?php } ?>
+        <a href="./index_s.php?page=<?php echo $prev_page_num ?>" class="page_button">◀</a>
         <?php
-        for($print_page = $s_pageNum; $print_page <= $e_pageNum; $print_page++){
+        for($num=1; $num<=$max_page_num; $num++){
         ?>
-        <a href="./index_s.php?page=<?php echo $print_page; ?>" class="page_button"><?php echo $print_page; ?></a>
+        <a href="./index_s.php?page=<?php echo $num ?>" class="page_button"><?php echo $num ?></a>
         <?php
         }
         ?>
-        <?php if($page_num >= $total_block){ ?>
-        <a href="./index_s.php?page=<?php echo $total_block; ?>" class="page_button">▶</a>
-        <?php } else{ ?>
-            <a href="./index_s.php?page=<?php echo ($page_num+1); ?>" class="page_button">▶</a>
-            <?php } ?>
+        <a href="./index_s.php?page=<?php echo $next_page_num ?>" class="page_button">▶</a>
         <div class="cat"><img src="./image_s/black_cat.jpg" alt=""></div>
     </div>
 </body>
