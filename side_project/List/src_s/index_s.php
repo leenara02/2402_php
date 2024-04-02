@@ -20,7 +20,6 @@ try {
 
     // 페이지관련 설정 셋팅
     $max_page_num = ceil($result_board_cnt / $list_cnt); // 최대 페이지 수
-    $total_block = floor($result_board_cnt / $block_num)-1; // 최대 페이지블럭수
     $now_block = ceil($page_num / $block_num);
     
     $s_pageNum = ($now_block-1) * $block_num +1;
@@ -34,9 +33,6 @@ try {
     };
 
     $offset = $list_cnt * ($page_num - 1); // OFFSET
-    $prev_page_num = ($page_num - 1) < 1 ? 1 : ($page_num -  1); // 이전 버튼 페이지 번호 
-    $next_page_num = ($page_num + 1) > $max_page_num ? $max_page_num : ($page_num + 1); // 다음버튼 페이지 번호
-
     // 게시글 리스트 조회
     $arr_param = [
         "list_cnt"  => $list_cnt
@@ -89,11 +85,7 @@ try {
         </div>
     </div>
     <div class="footer">
-        <?php if($page_num <= 1){?>
-        <a href="./index_s.php?page=<?php echo $page_num; ?>" class="page_button">◀</a>
-        <?php } else {?>
-            <a href="./index_s.php?page=<?php echo ($page_num-1); ?>" class="page_button">◀</a>
-            <?php } ?>
+        <a href="./index_s.php?page=<?php echo $page_num > 1 ? ($page_num-1) : 1; ?>" class="page_button">◀</a>
         <?php
         for($print_page = $s_pageNum; $print_page <= $e_pageNum; $print_page++){
         ?>
@@ -101,8 +93,8 @@ try {
         <?php
         }
         ?>
-        <?php if($page_num >= $total_block){ ?>
-        <a href="./index_s.php?page=<?php echo $total_block; ?>" class="page_button">▶</a>
+        <?php if($page_num >= $max_page_num){ ?>
+        <a href="./index_s.php?page=<?php echo $max_page_num; ?>" class="page_button">▶</a>
         <?php } else{ ?>
             <a href="./index_s.php?page=<?php echo ($page_num+1); ?>" class="page_button">▶</a>
             <?php } ?>
