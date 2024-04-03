@@ -22,7 +22,7 @@ FROM boards
 WHERE delted_at IS NULL;
 ORDER BY views DESC, created_at DESC;
 
-
+-- ...
 
 -- 3. 찜한 게시글이 3개 이상인 회원의 번호를 출력해 주세요.
 SELECT user_id
