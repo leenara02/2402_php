@@ -86,9 +86,62 @@ TITLE.classList.toggle('none'); // 디스플레이 논 이 많이 사용하는 �
 // 리스트의 요소들의 글자색을 짝수는 빨강, 홀수는 파랑으로 수정
 
 const UL_LI_ODD = document.querySelectorAll('ul li:nth-child(odd)');
-UL_LI_ODD.forEach(node => node.style.color = 'blue');
+UL_LI_ODD.forEach(node => node.style.color = 'red');
 const UL_LI_EVEN = document.querySelectorAll('ul li:nth-child(even)');
-UL_LI_EVEN.forEach(node => node.style.color = 'red');
+UL_LI_EVEN.forEach(node => node.style.color = 'blue');
+
+// 강사님코드
+const ITEMS = document.querySelectorAll('#ul > li'); // 노드리스트 객체
+ITEMS.forEach((item, key) => (item.style.color = key % 2 === 0 ? 'red' : 'blue'));
 
 
+// 새로운 요소 생성
+// 새로운 요소 만들고 삽입할 위치(요소) 선택하고 그 요소 안에 넣는다.
 
+// createElement(태그명) : 새로운 요소 생성
+const NEW_LI = document.createElement('li');
+NEW_LI.innerHTML = '광산게임'; // <li>광산게임</li>
+const NEW_LI2 = document.createElement('li');
+NEW_LI2.innerHTML = '광산게임'; // <li>광산게임</li>
+
+
+const TARGET = document.querySelector('#ul'); // 삽입할 부모요소 선택
+
+// appendChild(노드) : 해당 부모 노드의 마지막 자식으로 노드 추가
+// 여러개를 넣고싶으면 각각 따로 작성해줘야한다.
+// 여러줄을 넣고싶을경우 보통 루프 처리를 한다.
+// 루프를 돌릴경우 변수명을 새로 작성해줄 필요 없이 루프 한번에 새로운객체로 인식하기 때문에
+// 따로 처리할것없이 간단히 루프만 돌려주면 된다.
+TARGET.appendChild(NEW_LI);
+TARGET.appendChild(NEW_LI2);
+
+// 동일한 형태의 요소를 여러개 추가하는 방법
+for(let i = 0; i<3; i++){
+    const NEW_LI = document.createElement('li');
+    NEW_LI.innerHTML = '광산게임'; // <li>광산게임</li>
+    const TARGET = document.querySelector('#ul'); // 삽입할 부모요소 선택
+    TARGET.appendChild(NEW_LI);
+}
+
+// insetBefore(새로운노드, 기준노드) : 해당 부모 노드의 자식인 기준노드 앞에 새로운 노드를 추가
+const NEW_LI1 = document.createElement('li');
+NEW_LI1.innerHTML = '굴착소년쿵야';
+
+const hyunSoo = document.querySelector('#ul>li:nth-child(3)');
+
+TARGET.insertBefore(NEW_LI1, hyunSoo);
+
+// 실습 (스페이스, 사과게임 사이에 프리셋 넣기)
+const NEW_LI3 = document.createElement('li');
+NEW_LI3.innerHTML = '프리셀 나';
+const APP = document.querySelector('#ul>li:nth-child(5)');
+TARGET.insertBefore(NEW_LI3, APP);
+
+// 강사님 코드
+const NEW_LI4 = document.createElement('li');
+NEW_LI4.innerHTML = '프리셀 강사님';
+const APPLE = document.querySelector('#apple');
+TARGET.insertBefore(NEW_LI4, APPLE);
+
+// removeChild() : 해당 부모 노드의 자식을 삭제
+TARGET.removeChild(NEW_LI4);

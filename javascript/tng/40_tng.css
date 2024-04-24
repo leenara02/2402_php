@@ -1,0 +1,18 @@
+.beige {
+    background-color: aqua;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+}
+.pikaboo {
+    background-color: yellow;
+    width: 90%;
+    height: 90%;
+    margin: 5% auto;
+
+}
+.display-none {
+    display: none;
+}
