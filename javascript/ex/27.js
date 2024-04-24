@@ -53,15 +53,18 @@ arr.push('나미리', '둘리') // 파라미터를 복수 설정해서 여러 �
 //pop() : 원본배열의 마지막 요소를 제거, 제거된 요소의 값을 반환
 arr = ['홍길동', '갑순이', '갑돌이'];
 let result = arr.pop();
-console.log(arr);
+console.log(result); // 갑돌이
+console.log(arr); //(2) ['홍길동', '갑순이']
 
 // unshift() : 원본배열의 첫번째 요소를 추가, 변경된 length를 반환
 arr = ['홍길동', '갑순이', '갑돌이'];
 result = arr.unshift('둘리');
-console.log(result, arr);
+console.log(result, arr);// 4, (4) ['둘리', '홍길동', '갑순이', '갑돌이']
 
 // shift() : 원본배열의 첫번째 요소를 제거, 제거된 요소의 값 반환
+arr = ['둘리','홍길동', '갑순이', '갑돌이'];
 result = arr.shift();
+console.log(result); // 둘리
 
 // splice 보다는 pop 이나 shift를 더 많이 씀.
 // splice(start, count, ...args) : 요소를 잘라서 자른 배열을 반환 *원본변경
@@ -91,8 +94,7 @@ console.log(result); // []
 // 구분문자 default : 콤마(,)
 arr = [1, 2, 3, 4];
 result = arr.join('a');
-
-console.log(result);
+console.log(result);//1a2a3a4
 
 // sort() : 소트라고 읽음. 배열의 요소를 문자열로 변환 후 오름차순 정렬, 정렬된 배열 반환
 // 원본변경
