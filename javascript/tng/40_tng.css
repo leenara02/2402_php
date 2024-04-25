@@ -16,3 +16,23 @@
 .display-none {
     display: none;
 }
+
+/* 강사님 */
+.container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-color: cadetblue;
+    top: 300px;
+    left: 300px;
+}
+
+.box {
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    transform: translate(20%, 20%);
+}
+.busted {
+    background-color: beige;
+}

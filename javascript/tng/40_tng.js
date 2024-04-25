@@ -42,3 +42,49 @@ DIV_B.addEventListener('click', alert_pikaboo);
  * 반복
  */
   
+// 강사님
+//두근두근함수
+const myDokidoki = () => {
+    alert('두근두근');
+}
+
+//들켰다 함수
+const myBusted = () => {
+    const DIV_CONTAINER = document.querySelector('.container');
+    const DIV_BOX = document.querySelector('.box');
+    alert('들켰다!');
+    DIV_BOX.classList.toggle('busted');
+    DIV_BOX.removeEventListener('click', myBusted); // 들켰다 기존 이벤트 제거
+    DIV_BOX.addEventListener('click', myHide);// 숨는다 이벤트 추가
+
+    DIV_CONTAINER.removeEventListener('mouseenter', myDokidoki); // 기존 두근두근이벤트 제거
+}
+
+// 숨는다 함수
+const myHide = () => {
+    const DIV_CONTAINER = document.querySelector('.container');
+    const DIV_BOX = document.querySelector('.box');
+    alert_hide('다시 숨는다.');
+    DIV_BOX.classList.toggle('busted'); // 배겨색 부여
+    DIV_BOX.removeEventListener('click', myHide); // 기존 숨는다 제거
+    DIV_BOX.addEventListener('click', myBusted); // 들켰다이벤트 추가
+
+    DIV_CONTAINER.addEventListener('mouseenter', myDokidoki);
+}
+
+
+// 안녕하세요 숨은 div를 찾아보세요
+const BTN_INFO = document.querySelector('#btn-info');
+BTN_INFO.addEventListener('click', () => (alert('안녕하세요.\n숨어있는 div를 찾아보세요.')));
+// 리턴값이 없기 때문에 소괄호로 감싸준다.
+
+// 두근두근
+const DIV_CONTAINER = document.querySelector('.container');
+DIV_CONTAINER.addEventListener('mouseenter', myDokidoki);
+
+// 들켰다!
+const DIV_BOX = document.querySelector('.box');
+DIV_BOX.addEventListener('click', myBusted);
+
+// 다시숨는다 
+   
