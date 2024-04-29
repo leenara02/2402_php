@@ -3,7 +3,7 @@
 // setTimeout(콜백함수, 시간(ms)) : 일정 시간이 흐른 후에 콜백 함수를 실행
 // setTImeout(() => (console.lof('타임아웃')), 5000);
 
-// 1초뒤A, 2초 뒤B, 3초 뒤 C 출력
+// // 1초뒤A, 2초 뒤B, 3초 뒤 C 출력
 // setTimeout(() => console.log('A'), 1000);
 // setTimeout(() => console.log('B'), 2000);
 // setTimeout(() => console.log('c'), 3000);
@@ -21,12 +21,12 @@
 // }, 1000);
 
 // clearTimeout (타임아웃 ID) : 해당 타임아웃 ID의 처리를 제거
-// const TIMEOUT_ID = setTimeout(() => console.log('ttt', 5000));
-// clearTimeout(TIMEOUT_ID);
-// console.log(TIMEOUT_ID);
+const TIMEOUT_ID = setTimeout(() => console.log('ttt', 5000));
+clearTimeout(TIMEOUT_ID);
+console.log(TIMEOUT_ID);
 
-// const TIMEOUT_ID2 = setTimeout(() => console.log('aaa', 5000));
-// console.log(TIMEOUT_ID2);
+const TIMEOUT_ID2 = setTimeout(() => console.log('aaa', 5000));
+console.log(TIMEOUT_ID2);
 
 //setInterval (콜백함수, 시간(ms)[, 아규먼트1, 아규먼트2])
 // 일정 시간마다 콜백함수 실행

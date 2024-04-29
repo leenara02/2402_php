@@ -59,8 +59,8 @@ const myLoop = cnt => {
     console.log('루프종료 : ' + cnt);
 }
 
-// myLoop(100000000);
-// myLoop(10000000);
-// myLoop(10000);
+// myLoop(1000);
+// myLoop(100);
+// myLoop(10);
 
-Promise.all([myLoop(100000000), myLoop(10000000), myLoop(10000)]);
+Promise.all([myLoop(10000), myLoop(1000), myLoop(100)]);
