@@ -75,7 +75,7 @@ function myMakeImg(data) {
         //img 태그 생성
         const ADD_IMG = document.createElement('img');
         ADD_IMG.setAttribute('src', item.download_url);
-        ADD_IMG.style.width = '300px';
+        ADD_IMG.style.width = '100%';
 
         IMG_CON.appendChild(IMG_BOX);
         //넘버 추가
@@ -100,7 +100,4 @@ const BTN_API = document.querySelector('.submit');
 BTN_API.addEventListener('click', myAxiosGet);
 
 const BTN_DEL = document.querySelector('.remove');
-
-function A() {
-    
-} 
+BTN_DEL

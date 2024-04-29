@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+}
+
+h1 {
+    color: #fff;
+    background-color: #000;
+    margin: 20px 0;
+    text-align: center;
+    padding: 20px;
+    font-size: 4rem;
+}
+
+.main {
+    width: 80%;
+    height: 50px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.section {
+    width: 400px;
+    margin: auto;
+}
+
+#input-url {
+    width: 400px;
+}
+
+.article {
+    background-color: gray;
+}
+
+.div-article-id {
+    text-align: center;
+    padding: 10px;
+}
+
+.div-article-img {
+    width: 90%;
+
+}

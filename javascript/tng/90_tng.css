@@ -24,7 +24,7 @@
 
 .img-con {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 0.5rem;
     justify-items: center;
     justify-content: space-between;
