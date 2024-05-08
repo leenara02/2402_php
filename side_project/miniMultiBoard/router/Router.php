@@ -51,6 +51,30 @@ class Router {
             if($httpMethod === "GET"){
                 new BoardController("detailGet");
             }
+        } else if($url === "user/regist"){
+            // 회원가입 페이지
+            if($httpMethod === "GET"){
+                new UserController("registGet");
+            } else {
+                new UserController("registPost");
+            }
+        } else if($url === "user/email"){
+            // 이메일 중복 체크
+            if($httpMethod === "POST"){
+                new UserController("chkEmailPost");
+            }
+        } else if($url === "board/delete") {
+            // 게시글 삭제 처리
+            if($httpMethod === "POST") {
+                new BoardController("deletePost");
+            }
+        } else if($url === "user/modify") {
+            // 회원정보 수정 페이지
+            if($httpMethod === "GET"){
+                new UserController("modifyGet");
+            } else {
+                new UserController("modifyPost");
+            }
         }
 
         // 예외처리

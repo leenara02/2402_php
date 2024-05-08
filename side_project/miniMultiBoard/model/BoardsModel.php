@@ -14,6 +14,7 @@ class BoardsModel extends Model {
             ." boards "
             ." WHERE "
             ." b_type = :b_type "
+            ." AND deleted_at IS NULL "
             ." ORDER BY "
             ." b_id DESC "
             ;
@@ -83,6 +84,28 @@ class BoardsModel extends Model {
         } catch (\Throwable $th) {
             echo "BoardsModel >> getBoard(), ".$th->getMessage();
             exit; // exit뒤에 괄호 있는게 정석인데 보통 생략해서 작성함.
+        }
+    }
+
+    // 삭제처리
+    public function deleteBoard($paramArr){
+        try {
+            $sql =
+                " UPDATE boards "
+                ." SET "
+                ." deleted_at = NOW() "
+                ." WHERE "
+                ." b_id = :b_id "
+                ." AND u_id = :u_id "
+            ;
+
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute($paramArr);
+
+            return $stmt->rowCount();
+        } catch (\Throwable $th) {
+            echo "BoardModel >> deleteBoards(), ".$th->getMessage();
+            exit;
         }
     }
 }

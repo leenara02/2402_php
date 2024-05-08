@@ -50,8 +50,11 @@ class BoardController extends Controller {
     // 게시글 작성
     public function addPost() {
         // 이미지 파일 패스 처리
-        $path = "/"._PATH_IMG.$_FILES["img"]["name"];
-        move_uploaded_file($_FILES["img"]["tmp_name"], _ROOT.$path);
+        $path = "";
+        if(!empty($_FILES["img"]["name"])) {
+            $path = "/"._PATH_IMG.$_FILES["img"]["name"];
+            move_uploaded_file($_FILES["img"]["tmp_name"], _ROOT.$path);
+        }
 
         $requestData = [
             "b_type"        => $_POST["b_type"]
@@ -85,6 +88,10 @@ class BoardController extends Controller {
         $modelBoards = new BoardsModel();
         $resultBoard = $modelBoards->getBoard($requestData);
 
+        // 로그인 유저 pk 추가
+        // 글쓴 아이디 : u_id / 로그인한 아이디 : login_u_id
+        $resultBoard[0]["login_u_id"] = $_SESSION["u_id"];
+
         // JSON 변환
         // 배열을 json으로 변환 해주는 함수
         $response = json_encode($resultBoard);
@@ -92,6 +99,45 @@ class BoardController extends Controller {
         // response 처리
         header('Content-type: application/json');
         echo $response; // 제이슨데이터를 출력
+
+
+        exit;
+    }
+
+    // 삭제 처리
+    protected function deletePost() {
+        $requestData = [
+            "b_id" => $_POST["b_id"]
+            ,"u_id" => $_SESSION["u_id"]
+        ];
+
+        // response 데이터 초기화
+        $arrResponse = [
+            "errorFlg" => false
+            ,"errorMsg" => ""
+            ,"b_id" => 0
+        ];
+
+        // 삭제처리
+        $modelBoards = new BoardsModel();
+        $modelBoards->beginTransaction();
+        $resultDelete = $modelBoards->deleteBoard($requestData);
+
+        
+        if($resultDelete !== 1){
+            // 예외처리
+            $arrResponse["errorFlg"] = true;
+            $arrResponse["errorMsg"] = "삭제처리 이상";
+            $modelBoards->rollBack();
+        } else {
+            // 정상처리
+            $arrResponse["b_id"] = $requestData["b_id"];
+            $modelBoards->commit();
+        }
+
+        // response 처리
+        header("Content-type: application/json");
+        echo json_encode($arrResponse);
         exit;
     }
 }

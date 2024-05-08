@@ -10,7 +10,7 @@ class Controller {
     protected $arrBoardsNameInfo = []; // 헤더 게시판 드롭다운 리스트
     protected $boardName = ""; // 게시판 이름 
 
-    // 비로그인시 접속 불가능한 URL 리스트 (auto : 인증)
+    // 비로그인시 접속 불가능한 URL 리스트 (auth : 인증)
     private $arrNeedAuth = [
         "board/list"
     ];
