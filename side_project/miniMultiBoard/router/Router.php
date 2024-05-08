@@ -69,11 +69,11 @@ class Router {
                 new BoardController("deletePost");
             }
         } else if($url === "user/modify") {
-            // 회원정보 수정 페이지
-            if($httpMethod === "GET"){
+            // 회원정보 수정
+            if($httpMethod === "GET"){ // 서버의 상태가 바뀌지 않으면 GET
                 new UserController("modifyGet");
             } else {
-                new UserController("modifyPost");
+                new UserController("modifyPost"); // 서버의 상태가 바뀌는건 POST PUT DELETE? 어쩌구 등등 ...
             }
         }
 

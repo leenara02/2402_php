@@ -25,7 +25,11 @@
           </ul>
         </li>
         </ul>
+        <?php if($_GET["url"] !== "user/modify") {
+          ?>
         <a href="/user/modify" class="navbar-nav nav-link text-light" role="button">회원정보수정</a>
+          <?php
+        } ?>
         <a href="/user/logout" class="navbar-nav nav-link text-light" role="button">로그아웃</a>
       </div>
     <?php

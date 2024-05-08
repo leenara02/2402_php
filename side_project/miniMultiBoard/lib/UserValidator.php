@@ -28,11 +28,19 @@ class UserValidator {
             }
         }
 
+        // 패스워드 확인
         if(array_key_exists("u_pw", $param_arr) && array_key_exists("u_pw2", $param_arr) ){
             if($param_arr["u_pw"]!==$param_arr["u_pw2"]){
                 $arrErrorMsg[] = "안맞음";
             }
         }
+
+        // 강사님 패스워드 확인
+        // if(array_key_exists("u_pw_chk", $param_arr)){
+        //     if($param_arr["u_pw"] !== $param_arr["u_pw_chk"]) {
+        //         $arrErrorMsg[] = "비밀번호와 비밀번호확인이 다릅니다.";
+        //     }
+        // }
 
         // 이름 체크
         if(array_key_exists("u_name", $param_arr)){

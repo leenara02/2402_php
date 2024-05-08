@@ -58,7 +58,7 @@ class UsersModel extends Model {
         }
     }
 
-    // 유저 정보 수정처리
+    // 유저 정보 업데이트
     public function updateUserInfo($paramArr){
         try {
             $sql =
@@ -66,14 +66,15 @@ class UsersModel extends Model {
                 ." SET "
                 ." u_name = :u_name "
                 ." ,u_pw = :u_pw "
+                ." ,updated_at = NOW() " // 이걸 적어야지 바보야,ㅠㅠㅠㅠㅠㅠ
                 ." WHERE "
                 ." u_id = :u_id "
             ;
 
             $stmt = $this->conn->prepare($sql);
             $stmt->execute($paramArr);
-
             return $stmt->rowCount();
+            
         } catch (\Throwable $th) {
             echo "UserModel >> updateUserInfo(), ".$th->getMessage();
             exit;

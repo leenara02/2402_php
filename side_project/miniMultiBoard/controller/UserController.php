@@ -5,6 +5,14 @@ use model\UsersModel;
 use lib\UserValidator;
 
 class UserController extends Controller {
+    // private $userInfo = [];
+
+    // // getter 유저 정보
+    // public function getUserInfo($key) {
+    //     return $this->userInfo[$key];
+    // }
+    // 프로퍼티가 프라이빗일 경우 게터가 있어야 작동됨.
+    // 프라이빗으로 하면 부모 생성자에서 사용할 수 없기 때문에 ~
 
     // 로그인 페이지로 이동하는 액션
     protected function loginGet(){ // protected : 상속관계에서만 접근할수있는 접근제어지시자
@@ -155,10 +163,13 @@ class UserController extends Controller {
         return base64_encode($pw.$email); // 암호화처리 해주는 함수
     }
 
-    protected $arrUserInfo = []; // 유저 정보 배열초기화
+
+    protected $arrUserInfo = []; // 유저 정보 배열초기화 : UserController 에서만 사용하기 때문에 private 사용.?
+    // private 사용하면 오류 나는데..?
     
-    // 회원정보 수정 페이지로 이동 처리
-    protected function modifyGet() { 
+    // 회원정보 수정 페이지 이동
+    protected function modifyGet() {
+        // 회원정보 습득 
         $requestData = [
             "u_id" => $_SESSION["u_id"]
         ];
@@ -171,23 +182,23 @@ class UserController extends Controller {
         return "modify.php";
     }
 
-    // 유저정보 수정처리
+    // 회원정보 수정처리
     protected function modifyPost() {
-        // 유저 입력 정보 획득
+        // 유저정보 획득 : 2번 위에 작성하셨음. 이메일을 받아오기 위한 유저정보획득 : $selectData 로 작성하셨음.
         $requestData = [
            "u_id" => $_SESSION["u_id"]
        ];
-
         $modelUserName = new UsersModel();
         $this->arrUserInfo = $modelUserName->getUserInfo($requestData);
 
-         // 유저 입력 정보 획득
-         $requestData = [
-            "u_id" => $_SESSION["u_id"]
-            ,"u_name" => $_POST["u_name"]
-            ,"u_pw" => $_POST["u_pw"]
+        // 유저 정보 업데이트 : 강사님은 이걸 2번으로 작성 하셨음.
+        $requestData = [
+        "u_id" => $_SESSION["u_id"]
+        ,"u_name" => $_POST["u_name"] // requestData["u_name"]
+        ,"u_pw" => $_POST["u_pw"] // $this->encryptionPassword($requestData["u_pw"], $this->getUserInfo("u_email")게터때매 이렇게 작성하신듯?)
         ];
 
+        // 강사님은 이걸 1번으로 작성하셨음..!! 유저가 입력한 정보 받아오기
         $requestData1 = [
             "u_name" => $_POST["u_name"]
             ,"u_pw" => $_POST["u_pw"]
@@ -201,19 +212,22 @@ class UserController extends Controller {
         }
 
         $requestData["u_pw"] = $this->encryptionPassword($requestData["u_pw"], $this->arrUserInfo["u_email"]);
+
         // 수정 처리
         $modelUsers = new UsersModel();
         $modelUsers->beginTransaction(); // 업데이트 된 행의 수 반환
-        if($modelUsers->updateUserInfo($requestData) === 1){ // 업데이트 된 행의 수가 1
+        if($modelUsers->updateUserInfo($requestData) === 1){ // 업데이트 된 행의 수가 1 : 강사님은 에러처리를 먼저 하고 커밋은 if 밖에 따로 하심.
             $modelUsers->commit();
-            return "Location: /board/list";
+            return "Location: /board/list"; // 로케이션 : 보드리스트 페이지를 새로 만든다.
         } else {
             $modelUsers->rollBack();
             $this->arrErrorMsg = ["회원 정보 수정에 실패하였습니다."];
                 return "modify.php";
         }
 
-       return "Location: /user/modify";
+        
+    //    return "Location: /user/modify";
     }
+
     
 }

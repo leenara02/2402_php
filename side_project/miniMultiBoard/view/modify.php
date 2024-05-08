@@ -15,22 +15,22 @@
     require_once("view/inc/header.php");
     ?>
 
-    <div class="login-box position-absolute top-50 start-50 translate-middle">
-        
-        <h1>회원 정보 수정</h1>
+    <div class="login-box position-absolute top-50 start-50 translate-middle">    
+        <h2>회원 정보 수정</h2>
         <form action="/user/modify" method="POST">
             <div class="mb-3">
                 <?php require_once("view/inc/errorMsg.php"); ?>
             </div>
             <label for="u_name" class="form-label">이름</label>
             <input type="text" class="form-control mb-3" style="width: 300px;" id="u_name" name="u_name" value="<?php echo $this->arrUserInfo["u_name"] ?>">
+            <!-- <input type="text" class="form-control mb-3" style="width: 300px;" id="u_name" name="u_name" value=" echo $this->getUserInfo("u_name") "> -->
             
             <label for="u_pw" class="form-label">비밀번호</label>
             <input type="password" id="u_pw" class="form-control mb-3" style="width: 300px;" name="u_pw" aria-describedby="passwordHelpBlock">
             <label for="u_pw2" class="form-label">비밀번호 확인</label>
             <input type="password" id="u_pw2" class="form-control mb-3" style="width: 300px;" name="u_pw2" aria-describedby="passwordHelpBlock">
 
-            <button id="my-btn-complete" type="submit" class="btn btn-dark mb-3">수정</button>
+            <button id="my-btn-complete" type="submit" class="btn btn-dark mb-3">수정완료</button>
             <a href="/board/list" class="btn btn-secondary mb-3  float-end">취소</a>
         </form>
     </div>
