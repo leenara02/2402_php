@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
+        // 모델명은 단수, 테이블명은 복수로 설정한다.
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->id(); // 'id'  bigint  pk auto어쩌구
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->dateTime('created_at')->useCurrent();
+            $table->dateTime('updated_at')->useCurrent();
+            $table->dateTime('deleted_at')->nullable();
         });
     }
 

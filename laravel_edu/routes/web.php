@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\EduController;
+use App\Http\Controllers\UserController;
 /*
 |-------------------------------------------------------------------------------
 | Web Routes
@@ -112,6 +115,32 @@ Route::get('/send',function() {
     // return view('send')->with('gender', '무성')->with('name', '홍길동') // 방법1
     // ->with(['gender'=>'무성', 'name'=> '홍길동']); // 방법2
 });
+
+// ----------------------------------------------------------------------------
+// 컨트롤러 연결 (컨트롤러와 라우터를 연결)
+// ----------------------------------------------------------------------------
+// 커맨드로 컨트롤러 생성 : php artisan make:controller 컨트롤러명
+Route::get('/test', [TestController::class, 'index']); // [컨트롤러::class, '메소드명']
+// TestController->create() : get
+Route::get('/test/create', [TestController::class, 'create']);
+
+// ----------------------------------------------------------------------------
+// 리소스 라우터
+// ----------------------------------------------------------------------------
+
+Route::resource('task', TaskController::class);
+
+// ----------------------------------------------------------------------------
+// 블레이드 템플릿 연습용
+// ----------------------------------------------------------------------------
+
+
+Route::get('/edu', [EduController::class, 'index']);
+
+// ----------------------------------------------------------------------------
+// DB 관련 연습용
+// ----------------------------------------------------------------------------
+Route::get('/user', [UserController::class, 'eduUser']);
 
 
 // ----------------------------------------------------------------------------
