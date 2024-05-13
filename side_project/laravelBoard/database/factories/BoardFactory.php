@@ -20,10 +20,10 @@ class BoardFactory extends Factory
     public function definition()
     {
         $arrImg = [
-            '/public/img/sum01.jpg',
-            '/public/img/sum02.jpg',
-            '/public/img/sum03.jpg',
-            '/public/img/sum04.jpg'
+            '/img/sum01.png',
+            '/img/sum02.png',
+            '/img/sum03.png',
+            '/img/sum04.png'
         ];
         return [
             'user_id' => User::inRandomOrder()->first()->id // 랜덤으로 정렬 후 하나 가져오기
