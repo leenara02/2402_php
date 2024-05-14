@@ -12,7 +12,8 @@
 {{-- 메인 --}}
 @section('main')
 <div class="text-center mt-5 mb-5">
-    <h1>자유게시판</h1>
+    
+    <h1>{{$boardNameInfo->name}}</h1>
     <svg 
         xmlns="http://www.w3.org/2000/svg"
         width="50" height="50"
@@ -27,7 +28,7 @@
 
 <main>
     @foreach($data as $item)
-    <div class="card">
+    <div class="card" id="card{{$item->id}}">
         <img src="{{$item->img}}" class="card-img-top">
         <div class="card-body">
             <h5 class="card-title">{{$item->title}}</h5>
@@ -53,9 +54,13 @@
                 <div class="modal-body">
                     <p>살려주세요.</p>
                     <br>
-                    <img src="/img/sum02.png" class="card-img-top" alt="캐릭터">
+                    <img src="" class="card-img-top" alt="">
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer justify-content-between">
+                    <div>
+                        <button id="my-btn-retouch" type="button" class="btn btn-primary">수정</button>
+                        <button id="my-btn-delete" type="button" class="btn btn-danger" data-bs-dismiss="modal">삭제</button>
+                    </div>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
                 </div>
             </form>
@@ -69,8 +74,7 @@
         <div class="modal-content">
             <form action="{{route('board.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
-                {{-- TODO : type 설정 필요 --}}
-                <input type="hidden" name="type" value="0">
+                <input type="hidden" name="type" value="{{$boardNameInfo->type}}">
                 <div class="modal-header">
                     <input type="text" class="form-control" name="title" placeholder="제목을 입력하세요.">
                 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -86,8 +87,77 @@ class UserController extends Controller
 
         return redirect()->route('get.login');
     }
-}
 
+    /**
+     * 회원가입 처리
+     */
+    public function regist(Request $request) {
+        // 유효성 검사 : 유효성검사에서 걸리면 이전페이지로 이동(로그인, 횐갑 등등..)
+        $request->validate([
+            'email' => ['required', 'email', 'max:50'],
+            'password' => 'required|min:2|max:20|regex:/^[a-zA-Z0-9]+$/', // 레젝스할땐 보통 배열로 작성.
+            'name' => ['required', 'regex:/^[가-힣]{2,30}$/u']
+        ]);
+
+        // 회원정보 가공
+        $insertData = $request->only('email', 'password', 'name');
+        $insertData['password'] = Hash::make($insertData['password']);
+
+        // 인서트 처리
+        User::create($insertData);
+
+        return redirect()->route('get.login'); // 뷰가 아닌 리다이렉트 한 이유 : URL은 레지스트인체로 로그인으로 이동함. 이러면 오류니까!
+    }
+
+    /**
+     * 이메일 체크 처리
+     */
+    public function emailChk(Request $request) {
+        try {
+            // 응답 데이터 초기화
+            $responseData = [
+                'errorFlg' => true,
+                'emailFlg' => true,
+                'errorMsg' => ''
+            ];
+            
+            // 유효성 검사 : 유효성검사에서 걸리면 이전페이지로 이동(로그인, 횐갑 등등..)
+            
+            $validation = Validator::make(
+                $request->only('email')
+                ,[
+                    'email' => ['required', 'email', 'max:50']
+                ]
+            );
+    
+            if($validation->fails()) {
+                throw new Exception('유효성 체크 에러');
+            }
+
+            /**
+             * 이메일 체크
+             */
+            $resultEmail = User::select('id')->where('email', $request->email)->first();
+
+            if(!is_null($resultEmail)) {
+                $responseData['emailFlg'] = true;
+                throw new Exception('이메일 중복');
+            }
+
+            // 정상처리 (사용가능 이메일)
+            $responseData['errorFlg'] = false;
+            $responseData['emailFlg'] = false;
+
+        } catch (\Throwable $th) {
+            // 안적어도 되지만 확인 차 똑같이 true로 넣어주는게 좋다.
+            $responseData['errorFlg'] = true;
+            $responseData['errorMsg'] = $th->getMessage();
+        } finally {
+            return response()->json($responseData);
+        }
+    }
+}
+    
 
 // foreach ($validator->errors()->all() as $error) {
 //     echo $error."<br>";

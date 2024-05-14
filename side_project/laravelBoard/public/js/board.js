@@ -36,31 +36,48 @@ document.querySelectorAll(".my-btn-detail").forEach(item => {
 });
 
 // 삭제처리 (async로 한번 해보자)
-// document.querySelector('#my-btn-delete').addEventListener('click', myDeleteCard);
+document.querySelector('#my-btn-delete').addEventListener('click', MyDeleteCard);
 
-// async function myDeleteCard(e) {
-//     console.log(e.target.value);
+function MyDeleteCard(e) {
+    // console.log(e.target.value);
 
-//     const url = '/board/delete'; // url 설정
-
-//     const data = new FormData(); // form 설정
-//     data.append('id', e.target.value); // board id 셋팅
-
-//     try {
-//         const response = await axios.post(url, data);
-//         console.log(response.data);
-
-//         if(response.data.errorFlg){
-//             // 에러일 경우
-//             alert('삭제 실패');
-//         } else {
-//             // 정상일경우
-//             const main = document.querySelector('main'); // 부모요소
-//             const card = document.querySelector('#card' + response.data.b_id); // 삭제할 요소
-//             main.removeChild(card);            
-//         }
-//     } catch (error) {
-//         console.log(error);
-//     }
+    const url = '/board/' + e.target.value; // url 설정
     
+    // Ajax 처리
+    axios.delete(url)
+    .then(response => {
+        if(response.data.errorFlg){
+            // 삭제 이상 발생
+            alert('삭제 실패');
+        } else {
+            // 정상처리
+            const main = document.querySelector('main');
+            const card = document.querySelector('#card'+response.data.deletedId);
+            main.removeChild(card);
+        }
+    })
+    .catch();
+
+    
+}
+
+// 
+// const data = new FormData(); // form 설정
+// data.append('id', e.target.value); // board id 셋팅
+
+// try {
+//     const response = await axios.post(url, data);
+//     console.log(response.data);
+
+//     if(response.data.errorFlg){
+//         // 에러일 경우
+//         alert('삭제 실패');
+//     } else {
+//         // 정상일경우
+//         const main = document.querySelector('main'); // 부모요소
+//         const card = document.querySelector('#card' + response.data.b_id); // 삭제할 요소
+//         main.removeChild(card);            
+//     }
+// } catch (error) {
+//     console.log(error);
 // }

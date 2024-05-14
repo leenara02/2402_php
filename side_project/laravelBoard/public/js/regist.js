@@ -1,30 +1,36 @@
-document.querySelector('#btn-chk-email').addEventListener('click', () => {
-    const email = document.querySelector('#u_email').value;
-    const url = '/user/email';
+document.querySelector('#btn-chk-email').addEventListener('click', chkEmail);
 
-    // 폼 데이터 생성
-    const formData = new FormData();
-    formData.append('u_email', email);
-
-    axios.post(url, formData)
-    .then(res => {
-        const errMsg = document.querySelector('#div-error-msg');
-        const printChkEmail = document.querySelector('#print-chk-email');
-        const btnComplete = document.querySelector('#my-btn-complete');
-        if(res.data.errorFlg){
-            // 이메일 체크 실패 처리
-            errMsg.innerHTML = res.data.errorMsg.join('<br>'); // 사용, 형식 어쩌구
-            printChkEmail.textContent = '사용 불가';
-            printChkEmail.classList = 'text-danger fw-bold';
+async function chkEmail() {
+    try {
+        const email = document.querySelector('#email').value;
+        const url = '/user/chk';
+    
+        // form 생성
+        const form = new FormData();
+        form.append('email', email);
+    
+        // ajax
+        const response = await axios.post(url, form);
+            const btnComplete = document.querySelector('#my-btn-complete'); 
+            const printChkEmail = document.querySelector('#print-chk-email');
+            printChkEmail.innerHTML = '';
+            // 정상처리
+            if(response.data.emailFlg) {
+                // 중복 이메일
+            printChkEmail.innerHTML = '중복된 이메일';
+            printChkEmail.classList = 'text-danger';
             btnComplete.setAttribute('disabled', 'disabled');
-        } else {
-            // 이메일 체크 정상 처리
-            errMsg.innerHTML = ""; // 메세지 안뜸
-            printChkEmail.textContent = '사용 가능';
-            printChkEmail.classList = 'text-success fw-bold';
-            btnComplete.removeAttribute('disabled', 'disabled');
-            
-        }
-    })
-    .catch(err => console.log(err));
-});
+
+            } else {
+                // 사용가능 이메일
+            printChkEmail.innerHTML = '사용 가능';
+            printChkEmail.classList = 'text-success';
+            btnComplete.removeAttribute('disabled');
+            }
+        
+    } catch (error) {
+        console.log(error);
+        alert('이메일 확인해주세요');
+    }
+}
+
