@@ -9,12 +9,19 @@
   </div> -->
 
   <!-- 상품 리스트 -->
-  <div>
-    <div v-for="item in products" :key="item.productName"> <!-- PK개념으로 사용할 키를 작성 -->
+  <!-- 상품 리스트, 별도의 컴포넌트로 분리해 주세요. -->
+  <BoardList :products="products" @myOpenModal="myOpenModal">
+
+    <!-- slot : 자식쪽에서 <slot></slot> 부분에 전달하여 자식 컴포넌트에서 렌더링 -->
+    <h3> 부모쪽에서 정의한 슬롯</h3>
+  </BoardList>
+  <!-- <div>
+    <div v-for="item in products" :key="item.productName">
       <h4 @click="myOpenModal(item)">{{ item.productName}}</h4>
       <p>{{ item.price }} 원</p>
     </div>
-  </div>
+  </div> -->
+ <!-- PK개념으로 사용할 키를 작성 -->
 
   <!-- 모달 -->
   <!-- html 속성을 뷰속성으로 바꿔주러면 속성앞에 콜론을 붙인다.(v-on이 생략되어있다.) -->
@@ -27,19 +34,17 @@
       <button @click="flgModal = !flgModal">닫기</button>
     </div>
   </div> -->
-  <ModalDetail
-    :modal="product"
-    :flgModal="flgModal"
-  />
+  <ModalDetail :flgModal="flgModal" :product="product" @myCloseModal="myCloseModal" />
+  <!-- 프롭스는 콜론, 컴포넌트이벤트는 골뱅이 -->
 </template>
 
 
 <script setup>
 // 자바스크립트
-import { ref,reactive } from 'vue';
+import { provide,ref,reactive } from 'vue';
 import HeaderComponent from './components/HeaderComponent.vue'; // 자식 컴포넌트 import
 import ModalDetail from './components/ModalDetail.vue';
-
+import BoardList from './components/BoardList.vue';
 // --------------------------
 // 데이터 바인딩
 // --------------------------
@@ -75,6 +80,32 @@ function myOpenModal(item) {
   flgModal.value = !flgModal.value;
   product = item;
 }
+
+function myCloseModal(str) {
+  flgModal.value = false;
+  product = {};
+  console.log(str); // 파라미터 연습용
+}
+
+// --------------------------
+// Provide / Inject 연습
+// --------------------------
+const count = ref(0);
+
+function addCount() {
+  count.value++;
+}
+function minusCount() {
+  count.value--;
+}
+
+provide('test', {
+  count,
+  addCount,
+  minusCount
+});
+
+
 
 </script>
 
