@@ -51,7 +51,11 @@ class User extends Authenticatable
      * Accessor : Column gender
      */
     //  함수명 형식 : get컬럼명Attribute
-    public function getGenderAttribute() {
+    public function getGenderAttribute($value) {
         return $value == '0' ? '남자' : '여자';
     }   
+
+    public function boards() {
+        return $this->hasMany(Board::class); // 1:다 관계에서 다인곳은 hasMany
+    }
 }

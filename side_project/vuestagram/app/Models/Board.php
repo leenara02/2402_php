@@ -26,4 +26,8 @@ class Board extends Model
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+    public function users() {
+        return $this->belongsTo(User::class); // 1:다 관계에서 1인곳은 belongsTo
+    }
 }
