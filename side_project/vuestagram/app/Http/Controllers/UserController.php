@@ -62,4 +62,29 @@ class UserController extends Controller
         ];
         return response()->json($responseData, 200);
     }
+
+    /**
+     * 로그아웃 처리
+     * 
+     * @param Illuminate\Http\Request $request
+     * 
+     * @return response() json
+     */
+    //                      DI방식 자동으로 인스턴스해주는..
+    public function logout(Request $request) {
+        $id= MyToken::getValueInPayload($request->bearerToken(), 'idt');
+
+        $userInfo = User::find($id);
+
+        MyToken::removeRefreshToken($userInfo);
+
+        $responseData = [
+            'code' => '0',
+            'msg' => '',
+            'data' => $userInfo
+        ];
+
+        return response()->json($responseData, 200);
+    }
+
 }
