@@ -4,7 +4,7 @@
         <div class="header-container">
             <div class="header-content">
                 <div class="title">
-                    <router-link to="/"><h1>Vuestagram</h1></router-link>
+                    <router-link to="/board"><h1>Vuestagram</h1></router-link>
                 </div>
                 <img class="img-logo" src="/logo.png" alt="">
                 <div class="btn-group">

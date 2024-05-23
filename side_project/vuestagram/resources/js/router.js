@@ -1,6 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 import LoginComponent from '../components/LoginComponent.vue';
 import BoardComponent from "../components/BoardComponent.vue";
+import BoardCreateComponent from "../components/BoardCreateComponent.vue";
 import store from "./store";
 
 function chkAuth(to, from, next) {
@@ -34,6 +35,11 @@ const routes = [
         path: '/board',
         component: BoardComponent,
         // beforeEnter : 라우터가 실행되기 전에 실행할 소스코드(권한체크 등)
+        beforeEnter: chkAuth,
+    },
+    {
+        path: '/create',
+        component: BoardCreateComponent,
         beforeEnter: chkAuth,
     },
 ];
