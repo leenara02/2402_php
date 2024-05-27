@@ -12,7 +12,7 @@
                         <router-link to="/login">
                             <button class="btn btn-header btn-bg-black">로그인</button>
                         </router-link>
-                        <router-link to="/login">
+                        <router-link to="/regist">
                             <button class="btn btn-header btn-bg-white">가입하기</button>
                         </router-link>
                     </div>

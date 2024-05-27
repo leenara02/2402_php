@@ -29,6 +29,7 @@ const store = createStore({
         setUserBoardsCount(state) {
             state.userInfo.boards_count++;
         },
+
         // -------------------------
         // 게시글 관련
         // -------------------------
@@ -198,34 +199,137 @@ const store = createStore({
          * @param {object} boardInfo 
          */
         storeBoard(context, boardInfo) {
-            const url = '/api/board';
+            // 토큰 만료 체크
+            const payload = localStorage.getItem('accessToken').split('.')[1]; // 페이로드 획득
+            const base64Payload = payload.replaceAll('-','+').replaceAll('_','/');
+            const objPayload = JSON.parse(window.atob(base64Payload));
+
+            const exp = objPayload.exp + '000'; // 토큰 만료시간 획득(밀리초)
+            const now = new Date(); // 현재 시간 획득
+
+            if(exp < now.getTime()) {
+                // 토큰 재발급
+                const url = 'api/reissue';
+                const config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('refreshToken'),
+                    }
+                }
+                axios.post(url, null, config)
+                .then(response => {
+                    // token save in localStorage
+                    localStorage.setItem('accessToken', response.data.accessToken);
+                    localStorage.setItem('refreshToken', response.data.refreshToken);
+     
+                    // 게시글 작성 ajax 처리
+                    const url = '/api/board';
+                    const config = {
+                        headers: {
+                            'Content-Type': 'multipart/form-data',
+                            'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
+                        }
+                    }
+                    const data = new FormData();
+                    data.append('content',boardInfo.content);
+                    data.append('img', boardInfo.img);
+                    console.log(boardInfo);
+        
+                    // axios 처리
+                    axios.post(url, data, config)
+                    .then(response => {
+                        if(context.state.boardList.length > 1){
+                            context.commit('setUnshiftBoardList', response.data.data); // 보드리스트의 가장 앞에 작성한 글 정보 추가
+                        } // 여기 if 안넣고 BoardComponent onBeforeMount에 1보다 작거나 같다로 해도 됨. 단 게시물이 두개 이상일때.
+                        context.commit('setUserBoardsCount'); // 유저의 작성글 수 1 증가
+                        localStorage.setItem('userInfo', JSON.stringify(context.state.userInfo));
+        
+                        router.replace('/board');
+                    })
+                    .catch(error => {
+                        // console.log(error);
+                        // console.log(error.response);
+                        const code = error.response ? error.response.data.code : '';
+                        alert('게시글 작성 실패.( '+ code +' )');
+                    });
+                })
+                .catch(error => {
+                    // console.log(error);
+                    // console.log(error.response);
+                    const code = error.response ? error.response.data.code : '';
+                    alert('게시글 작성 실패.( '+ code +' )');
+                });
+                
+            } else {
+                // 게시글 작성 ajax 처리
+                const url = '/api/board';
+                const config = {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
+                    }
+                }
+                const data = new FormData();
+                data.append('content',boardInfo.content);
+                data.append('img', boardInfo.img);
+                console.log(boardInfo);
+    
+                // axios 처리
+                axios.post(url, data, config)
+                .then(response => {
+                    if(context.state.boardList.length > 1){
+                        context.commit('setUnshiftBoardList', response.data.data); // 보드리스트의 가장 앞에 작성한 글 정보 추가
+                    } // 여기 if 안넣고 BoardComponent onBeforeMount에 1보다 작거나 같다로 해도 됨. 단 게시물이 두개 이상일때.
+                    context.commit('setUserBoardsCount'); // 유저의 작성글 수 1 증가
+                    localStorage.setItem('userInfo', JSON.stringify(context.state.userInfo));
+    
+                    router.replace('/board');
+                })
+                .catch(error => {
+                    // console.log(error);
+                    // console.log(error.response);
+                    const code = error.response ? error.response.data.code : '';
+                    alert('게시글 작성 실패.( '+ code +' )');
+                });
+            }
+        },
+        /**
+         * 회원가입 처리
+         * 
+         * @param {*} context 
+         * @param {*} registInfo 
+         */
+        storeRegist(context){
+            const url = '/api/regist';
             const config = {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
                 }
             }
-            const data = new FormData();
-            data.append('content',boardInfo.content);
-            data.append('img', boardInfo.img);
-            console.log(boardInfo);
+            // const data = new FormData();
+            // data.append('account',registInfo.account);
+            // data.append('password', registInfo.password);
+            // data.append('name', registInfo.name);
+            // data.append('gender', registInfo.gneder);
+            // data.append('profile', registInfo.profile);
+            // console.log(data);
 
             // axios 처리
-            axios.post(url, data, config)
+            axios.post(url, null, config)
             .then(response => {
-                if(context.state.boardList.length > 1){
-                    context.commit('setUnshiftBoardList', response.data.data); // 보드리스트의 가장 앞에 작성한 글 정보 추가
-                } // 여기 if 안넣고 BoardComponent onBeforeMount에 1보다 작거나 같다로 해도 됨. 단 게시물이 두개 이상일때.
-                context.commit('setUserBoardsCount'); // 유저의 작성글 수 1 증가
-                localStorage.setItem('userInfo', JSON.stringify(context.state.userInfo));
+                console.log(response);
+                // context.commit('setRegistInfo', response.data.data);
+                // context.commit('setRegistInfo', data);
 
-                router.replace('/board');
+                console.log(response.data);
+                // localStorage.setItem('userInfo', JSON.stringify(context.state.userInfo));
+                alert('환영합니다');
+                router.replace('/login');
             })
             .catch(error => {
                 // console.log(error);
                 // console.log(error.response);
                 const code = error.response ? error.response.data.code : '';
-                alert('게시글 작성 실패.( '+ code +' )');
+                alert('회원가입 실패.( '+ code +' )');
             });
         }
     }
