@@ -298,23 +298,23 @@ const store = createStore({
          * @param {*} context 
          * @param {*} registInfo 
          */
-        storeRegist(context){
+        storeRegist(context, registInfo){
             const url = '/api/regist';
             const config = {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 }
             }
-            // const data = new FormData();
-            // data.append('account',registInfo.account);
-            // data.append('password', registInfo.password);
-            // data.append('name', registInfo.name);
-            // data.append('gender', registInfo.gneder);
-            // data.append('profile', registInfo.profile);
-            // console.log(data);
+            const data = new FormData();
+            data.append('account',registInfo.account);
+            data.append('password', registInfo.password);
+            data.append('name', registInfo.name);
+            data.append('gender', registInfo.gneder);
+            data.append('profile', registInfo.profile);
+            console.log(data);
 
             // axios 처리
-            axios.post(url, null, config)
+            axios.post(url, data, config)
             .then(response => {
                 console.log(response);
                 // context.commit('setRegistInfo', response.data.data);

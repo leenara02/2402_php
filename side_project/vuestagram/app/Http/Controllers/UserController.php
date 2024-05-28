@@ -31,7 +31,7 @@ class UserController extends Controller
 
         // 유효성 검사 실패 처리
         if($resultValidate->fails()) {
-            Log::debug('login Validation Error', $resultValidate->errors()->all());
+            Log::debug('login Validation Error', $resultValidate->errors()->toArray());
             throw new MyValidateException('E01');
         }
 
@@ -169,6 +169,7 @@ class UserController extends Controller
 
         // 유효성 검사 실패 처리
         if($validator->fails()) {
+            Log::debug('유효성검사 실패 :', $validator->errors()->toArray());
             throw new MyValidateException('E01');
         }
         Log::debug('유효성 체크 실패 안함');
