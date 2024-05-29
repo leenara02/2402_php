@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\MyValidateException;
 use App\Models\Board;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class BoardController extends Controller
 {
@@ -36,5 +40,51 @@ class BoardController extends Controller
         ];
 
         return response()->json($responseData,200);
+    }
+
+    //create-2. 게시글 작성
+    public function store(Request $request){
+
+        // 유효성 체크
+        $validator = Validator::make(
+            $request->only('content', 'img'),
+            [
+                'content' => ['required','min:1','max:200'],
+                'img' => ['required', 'image']
+            ]
+        );
+
+        // 유효성 검사 실패 체크
+        if($validator->fails()){ // 실패했으면 true
+            Log::debug('유효성 검사 실패 : ', $validator->errors()->toArray()); //로그의 첫번째 파라미터는 문자열이다
+            throw new MyValidateException('E01');
+        };
+
+        // 유효성 검사 하고나면 넘어온 데이터를 실제로 저장해야함.
+
+        // 이미지파일 저장
+        $path = $request->file('img')->store('img'); // 리퀘스트안에 실제 이미지파일을 우리 이미지파일에 저장한다.
+
+        // ----------------------- 모델을 이용한 인서트 처리
+        $boardModel = Board::select('boards.*', 'users.name')
+                            ->join('users','users.id','=','boards.id')
+                            ->where('users.id', Auth::id())
+                            ->first();
+
+        $boardModel->content = $request->content;
+        $boardModel->img = $path;
+        // 이 게시글 작성한 유저 아이디를 세팅 해줘야함.
+        $boardModel->user_id = Auth::id(); // 현재 로그인된 사람의 정보를 가져온다.
+        $boardModel->save();
+        // 보드 객체로 셀렉트 해왔기 때문에 보드만 업데이트 된다.
+        // ------------------------------------------------
+
+        // 레스폰스데이터 만들고 리턴
+        $responseData = [
+            'code' => '0',
+            'msg' => 'board create success',
+            'data' => $boardModel->toArray()
+        ];
+        return response()->json($responseData, 200);
     }
 }

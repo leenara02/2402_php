@@ -30,6 +30,15 @@ const store = createStore({
         setMoreBoardData(state, data) {
             state.boardData = [...state.boardData, ...data];
         },
+        // 작성 게시글을 가장 앞에 추가 (배열의 가장 앞에 우리가 작성한 최신게시글이 들어간다.)
+        setUnshiftBoardData(state,data) {
+            state.boardData.unshift(data);
+        },
+        // 유저 작성글 수 + 1
+        setAddUserBoardsCount(state){
+            state.userInfo.boards_count++; // 얘만 설정하면 리플래시 하면 로컬스토리지에 있는 수로 변경 된다.
+            localStorage.setItem('userInfo', state.userInfo);
+        }
     },
     actions: {
         /**
@@ -126,6 +135,53 @@ const store = createStore({
                 alert('추가 게시글 획득 실패 ( ' + error.response.data.code + ' )');
             })
         },
+        /**
+         * 회원가입 처리
+         * registration-13 메소드 생성 url 설정
+         * @param {*} context 
+         */
+        registration(context){
+            const url = '/api/registration';
+            //registration-14. 폼 데이터 가져오기
+            const data = new FormData(document.querySelector('#registrationForm'));
+
+            //registration-15. 서버에 요청 보내기
+            // axios.js 에 기본 헤더로 토큰을 설정 해줬기 때문에 일일이 적어주지 않아도 동작한다.
+            // CSRF 에러 코드 : 419
+            axios.post(url, data)
+            .then(response => {
+                console.log(response.data); // TODO
+                alert('가입완료 ! 로그인페이지로 이동 합니다.');
+                //registration-16. 별다른 처리 없이 로그인페이지로 이동
+                router.replace('/login');
+            })
+            .catch(error=> {
+                console.log(error.response.data); // TODO
+                alert('회원가입에 실패 했습니다. ( ' + error.response.data.code +' )')
+            })
+        },
+        /**
+         * 글작성
+         * 
+         * @param {*} context 
+         * @param {*} data 
+         */
+        boardStore(context) {
+            const url = '/api/board';
+            const data = new FormData(document.querySelector('#boardCreateForm'));
+
+            axios.post(url, data)
+            .then(response => {
+
+                context.commit('setUnshiftBoardData', response.data.data); // 보드리스트의 가장 앞에 작성한 글 정보 추가
+                context.commit('setAddUserBoardsCount'); // 유저의 작성글 수 1 증가
+
+                router.replace('/board');
+            })
+            .catch(error=> {
+                alert('글작성에 실패 했습니다. ( ' + error.response.data.code +' )')
+            })
+        }
     }
 });
 

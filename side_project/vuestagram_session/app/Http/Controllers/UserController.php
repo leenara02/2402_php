@@ -31,7 +31,7 @@ class UserController extends Controller
         // 유효성 검사 실패시 처리
         if($validator->fails()){
             Log::debug('유효성 검사 실패', $validator->errors()->toArray());
-            throw new MyValidateException('E01'); ['required', 'min:4', 'max:20', 'regex:/^[a-zA-Z0-9]+$/'];
+            throw new MyValidateException('E01');
         }
 
         // 유저 정보 획득
@@ -83,5 +83,53 @@ class UserController extends Controller
         return response()
             ->json($responseData, 200)
             ->cookie('auth', '1', -1, null, null, false, false);
+    }
+
+    /**
+     * 회원 가입
+     */
+    public function registration(Request $request) {
+        // registration-2. 리퀘스트 데이터 획득
+        $requestData = $request->all();
+
+        // registration-3. 유효성 검사
+        $validator = Validator::make(
+            $requestData,
+            [
+                'account' => ['required','min:4','max:20','unique:users', 'regex:/^[a-zA-Z0-9]+$/'], // 레젝스안에 민맥 적으면 형식맞지않다 , 따로 민맥하면 최소 최대 몇글자 에러문구가 나온다.
+                'password' => ['required', 'min:4', 'max:20', 'regex:/^[a-zA-Z0-9!@#$%^&*]+$/'], 
+                'password_chk' => ['same:password'],
+                'name' => ['required', 'min:2', 'max:20', 'regex:/^[가-힣]+$/u'], // u : 유니코드로 비교하겠다, 한국어로 하려면 필수
+                'gender' => ['required', 'regex:/^[0-1]{1}$/'],
+                'profile' => ['required', 'image']
+            ]
+        );
+
+        // registration-4. 유효성 검사 실패 체크
+        if($validator->fails()){
+            Log::debug('유효성 검사 실패 : ', $validator->errors()->toArray()); //로그의 첫번째 파라미터는 문자열이다
+            throw new MyValidateException('E01');
+        }
+
+        //registration-7. 작성 데이터 생성
+        $insertData = $request->all();
+
+        // registration-5. 파일 저장
+        $insertData['profile'] = $request->file('profile')->store('profile');
+
+        //registration-8. 비밀번호 설정
+        $insertData['password'] = Hash::make($request->password);
+
+        //registration-9. 인서트 처리
+        $userInfo = User::create($insertData);
+
+        //registration-10. 레스폰스데이터 만들고 리턴
+        $responseData = [
+            'code' => '0',
+            'msg' => 'logout success',
+            'data' => $userInfo
+        ];
+        return response()
+            ->json($responseData, 200);
     }
 }

@@ -6,6 +6,7 @@ import RegistrationComponent from '../components/RegistrationComponent.vue';
 import store from './store';
 
 const routes = [
+    // login-1. 패스 설정
 		{
             path: '/',
             redirect: '/login',

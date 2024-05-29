@@ -32,15 +32,19 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app'),
-        ],
+            // 'root' => storage_path('app'),
+
+            // registration-6. 파일경로 변경
+            'root' => public_path(),
+
+        ], // 내부서버
 
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
-        ],
+        ], // 외부서버
 
         's3' => [
             'driver' => 's3',
@@ -51,7 +55,7 @@ return [
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
-        ],
+        ], // AWS : 요즘 현업은 이쪽을 많이 쓴다.
 
     ],
 
